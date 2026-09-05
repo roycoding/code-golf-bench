@@ -355,6 +355,25 @@
         cursor: not-allowed;
       }
 
+      .site-footer {
+        margin-top: 24px;
+        color: rgba(255, 251, 230, 0.65);
+        font-size: 11px;
+        text-align: center;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+      }
+
+      .site-footer a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .site-footer a:hover {
+        background: transparent;
+        color: #fffbe6;
+      }
+
       @media (max-width: 760px) {
         body {
           background-attachment: scroll;
@@ -444,6 +463,8 @@
           <tbody id="leaderboard"></tbody>
         </table>
       </div>
+
+      <footer class="site-footer">Made by <a href="https://roycoding.com">roycoding</a></footer>
     </main>
 
     <script>

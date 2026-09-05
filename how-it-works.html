@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>How the Code Golf Benchmark Works</title>
+    <link rel="icon" type="image/png" href="code_golf_bench_background1.png">
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #102017;
+        --panel: #fff8d8;
+        --panel-2: #e9f7b9;
+        --text: #1b2a20;
+        --muted: #47614d;
+        --line: #243f2c;
+        --ink: #08150d;
+        --link: #075f48;
+        --gold: #ffd24a;
+        --shadow: rgba(2, 10, 5, 0.42);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          linear-gradient(rgba(9, 21, 13, 0.08), rgba(9, 21, 13, 0.82)),
+          url("code_golf_bench_background1.png") center top / cover fixed,
+          var(--bg);
+        color: var(--text);
+        font: 14px/1.55 "Courier New", ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      main {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 28px 20px 44px;
+      }
+
+      header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        min-height: 260px;
+        margin-bottom: 18px;
+        color: #fffbe6;
+        text-shadow: 0 3px 0 #0a1b10, 0 0 12px rgba(0, 0, 0, 0.6);
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 820px;
+        font-size: clamp(34px, 6vw, 64px);
+        line-height: 0.95;
+        font-weight: 900;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin: 0 0 10px;
+        color: var(--ink);
+        font-size: 20px;
+        line-height: 1.15;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h3 {
+        margin: 18px 0 8px;
+        color: var(--ink);
+        font-size: 16px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      p {
+        margin: 0 0 12px;
+      }
+
+      ul,
+      ol {
+        margin: 0 0 0 22px;
+        padding: 0;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      a {
+        color: var(--link);
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      a:hover {
+        background: var(--gold);
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      code {
+        color: var(--muted);
+      }
+
+      .subhead {
+        max-width: 700px;
+        margin: 12px 0 0;
+        color: #f8edb2;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .top-link {
+        display: inline-block;
+        flex: 0 0 auto;
+        border: 3px solid #fffbe6;
+        background: rgba(8, 21, 13, 0.72);
+        color: #fffbe6;
+        padding: 10px 12px;
+        box-shadow: 4px 4px 0 rgba(2, 10, 5, 0.55);
+        text-shadow: none;
+        text-transform: uppercase;
+      }
+
+      .top-link:hover {
+        background: var(--gold);
+        color: var(--ink);
+        text-shadow: none;
+      }
+
+      .summary {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .metric,
+      .panel {
+        background: var(--panel);
+        border: 3px solid var(--ink);
+        border-radius: 0;
+        box-shadow: 5px 5px 0 var(--shadow);
+      }
+
+      .metric {
+        padding: 14px;
+      }
+
+      .metric span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      .metric strong {
+        display: block;
+        margin-top: 4px;
+        color: var(--ink);
+        font-size: 24px;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
+        gap: 16px;
+        align-items: start;
+      }
+
+      .panel {
+        padding: 18px;
+      }
+
+      .panel + .panel {
+        margin-top: 16px;
+      }
+
+      .steps {
+        counter-reset: step;
+        display: grid;
+        gap: 12px;
+      }
+
+      .step {
+        position: relative;
+        min-height: 78px;
+        padding-left: 56px;
+      }
+
+      .step::before {
+        counter-increment: step;
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border: 3px solid var(--ink);
+        background: var(--gold);
+        color: var(--ink);
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .formula {
+        margin: 12px 0 0;
+        border: 3px solid var(--ink);
+        background: var(--panel-2);
+        color: var(--ink);
+        padding: 12px;
+        font-size: 15px;
+        font-weight: 800;
+        box-shadow: 4px 4px 0 var(--shadow);
+      }
+
+      .after-formula {
+        margin-top: 12px;
+      }
+
+      .definition-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .definition {
+        border-top: 2px solid rgba(36, 63, 44, 0.35);
+        padding-top: 10px;
+      }
+
+      .definition strong {
+        display: block;
+        color: var(--ink);
+        text-transform: uppercase;
+      }
+
+      @media (max-width: 820px) {
+        body {
+          background-attachment: scroll;
+        }
+
+        header {
+          display: block;
+          min-height: 220px;
+          padding-top: 90px;
+        }
+
+        .top-link {
+          margin-top: 16px;
+        }
+
+        .summary,
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .summary {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .metric strong {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1>How the Code Golf Benchmark Works</h1>
+          <p class="subhead">Models solve small programming holes. Scores reward correct, tiny source files and penalize failures without throwing away partial progress.</p>
+        </div>
+        <a class="top-link" href="index.html">Back to Leaderboard</a>
+      </header>
+
+      <section class="summary" aria-label="Benchmark mechanics summary">
+        <div class="metric"><span>Goal</span><strong>Smallest Code</strong></div>
+        <div class="metric"><span>Unit</span><strong>UTF-8 Bytes</strong></div>
+        <div class="metric"><span>Tests</span><strong>Public + Private</strong></div>
+        <div class="metric"><span>Rank</span><strong>Lowest Score</strong></div>
+      </section>
+
+      <div class="content-grid">
+        <div>
+          <section class="panel">
+            <h2>The Basic Loop</h2>
+            <div class="steps">
+              <div class="step">
+                <h3>A course defines the holes</h3>
+                <p>Each course is an ordered set of tasks. The current Python course has 18 holes, and the experimental Racket course reuses those task fixtures with a Racket-specific submission contract.</p>
+              </div>
+              <div class="step">
+                <h3>The prompt shows examples</h3>
+                <p>The generated prompt includes the task description and public tests. Private tests stay out of the prompt and are used during published scoring.</p>
+              </div>
+              <div class="step">
+                <h3>The model returns raw source</h3>
+                <p>The final answer is saved as the submitted file. The benchmark does not format, normalize, or rewrite the source before counting or running it.</p>
+              </div>
+              <div class="step">
+                <h3>The runner executes the submission</h3>
+                <p>Python submissions define a function named <code>f</code>. Racket submissions define a procedure named <code>f</code>. The harness calls that entrypoint for every selected test case and compares the returned value to the expected output.</p>
+              </div>
+              <div class="step">
+                <h3>The scorer counts bytes and failures</h3>
+                <p>The byte count is the raw UTF-8 length of the submitted file. Passing all tests means the score is exactly that byte count. Failed or partial submissions keep their byte count but receive a correctness penalty.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h2>Scoring</h2>
+            <p>Lower is better, matching normal code golf. Each hole has a penalty budget, usually 1000 bytes. The scorer computes correctness from test pass rate, then adds a squared penalty for the missing correctness.</p>
+            <div class="formula">
+              correctness = tests_passed / tests_total<br>
+              incorrectness = 1 - correctness<br>
+              score = raw_bytes + penalty_bytes * incorrectness^2
+            </div>
+            <p class="after-formula">A fully correct 31-byte submission scores 31. A short partial solution can receive credit, but only if its small byte count outweighs the penalty for failed tests. Missing submissions count as zero correctness for that hole.</p>
+          </section>
+
+          <section class="panel">
+            <h2>Course and Leaderboard Scores</h2>
+            <p>A course score is the sum of its hole scores. The leaderboard keeps the best result for each model on each course, preferring lower score, then more holes and tests passed, then fewer raw bytes.</p>
+            <p>The combined view ranks models that have results for every available course by total score. Course tabs rank models within one language/course. Selecting a model opens course-level results, and selecting a course shows hole-by-hole detail.</p>
+          </section>
+        </div>
+
+        <aside>
+          <section class="panel">
+            <h2>What the Columns Mean</h2>
+            <div class="definition-list">
+              <div class="definition">
+                <strong>Score</strong>
+                <span>Raw bytes plus any correctness penalty. This is the ranking number.</span>
+              </div>
+              <div class="definition">
+                <strong>Raw Bytes</strong>
+                <span>The exact UTF-8 byte length of the submitted source file.</span>
+              </div>
+              <div class="definition">
+                <strong>Penalty</strong>
+                <span>Score minus raw bytes. A correct submission has zero penalty.</span>
+              </div>
+              <div class="definition">
+                <strong>Correctness</strong>
+                <span>Tests passed divided by all tests in the selected scoring set.</span>
+              </div>
+              <div class="definition">
+                <strong>Holes Passed</strong>
+                <span>Tasks where the submission passed every test. This is stricter than test-level correctness.</span>
+              </div>
+              <div class="definition">
+                <strong>Official Bytes</strong>
+                <span>The traditional code golf number. It exists only for fully passing submissions.</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h2>Best-of-N Runs</h2>
+            <p>Some API runs ask a model for multiple planned attempts per hole. Selection uses only public tests: most public tests passed, then lowest public-test score, then fewest raw bytes, then earliest attempt.</p>
+            <p>Private tests are never used to choose between attempts. They are used later when the selected submission is scored for the published results.</p>
+          </section>
+
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>

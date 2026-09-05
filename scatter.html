@@ -1,0 +1,1319 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Score vs Cost or Latency</title>
+    <link rel="icon" type="image/png" href="code_golf_bench_background1.png">
+    <script src="results.js"></script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #102017;
+        --panel: #fff8d8;
+        --panel-2: #e9f7b9;
+        --text: #1b2a20;
+        --muted: #47614d;
+        --line: #243f2c;
+        --ink: #08150d;
+        --link: #075f48;
+        --gold: #ffd24a;
+        --sky: #73d4ff;
+        --shadow: rgba(2, 10, 5, 0.42);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          linear-gradient(rgba(9, 21, 13, 0.1), rgba(9, 21, 13, 0.8)),
+          url("code_golf_bench_background1.png") center top / cover fixed,
+          var(--bg);
+        color: var(--text);
+        font: 14px/1.45 "Courier New", ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 28px 20px 44px;
+      }
+
+      header {
+        min-height: 260px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        margin-bottom: 18px;
+        color: #fffbe6;
+        text-shadow: 0 3px 0 #0a1b10, 0 0 12px rgba(0, 0, 0, 0.6);
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 900px;
+        font-size: clamp(34px, 7vw, 72px);
+        line-height: 0.95;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .subhead {
+        max-width: 760px;
+        margin: 12px 0 0;
+        color: #f8edb2;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .header-nav {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .view-switcher {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .view-link,
+      .utility-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: rgba(8, 21, 13, 0.78);
+        color: #fffbe6;
+        text-shadow: none;
+        text-transform: uppercase;
+      }
+
+      .view-link {
+        border: 3px solid #fffbe6;
+        padding: 11px 15px;
+        box-shadow: 4px 4px 0 rgba(2, 10, 5, 0.55);
+        font-weight: 800;
+      }
+
+      .view-link + .view-link {
+        margin-left: -3px;
+      }
+
+      .view-link[aria-current="page"] {
+        position: relative;
+        z-index: 1;
+        background: var(--gold);
+        color: var(--ink);
+      }
+
+      .utility-link {
+        border: 2px solid #fffbe6;
+        padding: 7px 9px;
+        box-shadow: 3px 3px 0 rgba(2, 10, 5, 0.55);
+        font-size: 12px;
+      }
+
+      .view-link:hover,
+      .utility-link:hover {
+        background: var(--gold);
+        color: var(--ink);
+      }
+
+      .button-icon {
+        flex: 0 0 auto;
+        width: 17px;
+        height: 17px;
+        stroke-width: 2;
+      }
+
+      .summary {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        background: var(--panel);
+        border: 3px solid var(--ink);
+        box-shadow: 4px 4px 0 var(--shadow);
+        margin-bottom: 20px;
+      }
+
+      .metric,
+      .panel {
+        background: var(--panel);
+      }
+
+      .metric {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        min-width: 0;
+        padding: 9px 12px;
+      }
+
+      .metric:not(:last-child) {
+        border-right: 2px solid var(--line);
+      }
+
+      .metric span,
+      .panel-label {
+        display: block;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+
+      .metric span {
+        font-size: 11px;
+      }
+
+      .metric strong {
+        font-size: 18px;
+        color: var(--ink);
+      }
+
+      .panel {
+        border: 3px solid var(--ink);
+        box-shadow: 5px 5px 0 var(--shadow);
+        padding: 16px;
+        margin-bottom: 20px;
+      }
+
+      .panel-label {
+        margin-bottom: 10px;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .axis-controls {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: end;
+        gap: 12px;
+      }
+
+      .axis-control {
+        display: grid;
+        gap: 5px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .axis-control input,
+      .axis-button {
+        min-height: 40px;
+        border: 3px solid var(--ink);
+        border-radius: 0;
+        background: #fffbe6;
+        color: var(--ink);
+        font: inherit;
+        font-weight: 800;
+        padding: 7px 10px;
+      }
+
+      .axis-control input {
+        width: 148px;
+      }
+
+      .axis-control input[type="range"] {
+        min-height: auto;
+        border: 0;
+        background: transparent;
+        padding: 0;
+        accent-color: var(--ink);
+      }
+
+      .axis-button {
+        background: var(--gold);
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+
+      .filter {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 3px solid var(--ink);
+        background: var(--panel-2);
+        color: var(--ink);
+        cursor: pointer;
+        font-weight: 800;
+        padding: 8px 10px;
+        text-transform: uppercase;
+      }
+
+      .filter:has(input:checked) {
+        background: var(--gold);
+      }
+
+      .filter input {
+        accent-color: var(--ink);
+      }
+
+      .filter input:disabled {
+        cursor: not-allowed;
+      }
+
+      .chart-wrap {
+        position: relative;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      #plot {
+        display: block;
+        min-width: 720px;
+        width: 100%;
+        height: auto;
+        background: #fffbe6;
+        border: 3px solid var(--ink);
+      }
+
+      .grid-line {
+        stroke: #b5c89d;
+        stroke-width: 1;
+        stroke-dasharray: 4 5;
+      }
+
+      .axis-line {
+        stroke: var(--ink);
+        stroke-width: 3;
+      }
+
+      .tick-label,
+      .axis-label {
+        fill: var(--ink);
+        font-family: "Courier New", ui-monospace, monospace;
+        font-size: 13px;
+      }
+
+      .axis-label {
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .point {
+        stroke: var(--ink);
+        stroke-width: 2;
+        cursor: pointer;
+      }
+
+      .point:focus {
+        outline: none;
+        stroke: #fff;
+        stroke-width: 4;
+      }
+
+      .frontier-line {
+        fill: none;
+        stroke-width: 3;
+        stroke-dasharray: 7 5;
+        opacity: 0.8;
+      }
+
+      .frontier-label {
+        fill: var(--ink);
+        font-family: "Courier New", ui-monospace, monospace;
+        font-size: 12px;
+        font-weight: 700;
+        opacity: 0.95;
+        paint-order: stroke;
+        pointer-events: none;
+        stroke: #fffbe6;
+        stroke-linejoin: round;
+        stroke-width: 4px;
+      }
+
+      .frontier-leader {
+        pointer-events: none;
+        stroke: var(--ink);
+        stroke-width: 1.25;
+        opacity: 0.62;
+      }
+
+      .tooltip {
+        position: absolute;
+        z-index: 2;
+        max-width: 330px;
+        border: 3px solid var(--ink);
+        background: var(--panel);
+        color: var(--ink);
+        box-shadow: 5px 5px 0 var(--shadow);
+        padding: 10px 12px;
+        pointer-events: auto;
+      }
+
+      .tooltip[hidden] {
+        display: none;
+      }
+
+      .tooltip strong,
+      .tooltip span {
+        display: block;
+      }
+
+      .tooltip strong {
+        margin-bottom: 4px;
+      }
+
+      .tooltip a {
+        display: inline-block;
+        margin-top: 8px;
+        pointer-events: auto;
+      }
+
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 12px;
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      .legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .legend-dot {
+        width: 12px;
+        height: 12px;
+        border: 2px solid var(--ink);
+      }
+
+      .legend-dot.circle {
+        border-radius: 50%;
+      }
+
+      .legend-dot.diamond {
+        transform: rotate(45deg) scale(0.8);
+      }
+
+      .legend-dot.triangle {
+        clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      }
+
+      .legend-label {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      .legend-line {
+        width: 20px;
+        border-top: 3px dashed var(--ink);
+      }
+
+      .notice,
+      .empty {
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      .empty {
+        padding: 50px 20px;
+        text-align: center;
+      }
+
+      a {
+        color: var(--link);
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      a:hover {
+        background: var(--gold);
+        color: var(--ink);
+      }
+
+      @media (max-width: 760px) {
+        body {
+          background-attachment: scroll;
+        }
+
+        header {
+          min-height: 220px;
+        }
+
+        .summary {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .metric:not(:last-child) {
+          border-right: 0;
+        }
+
+        .metric:nth-child(odd) {
+          border-right: 2px solid var(--line);
+        }
+
+        .metric:nth-child(-n + 2) {
+          border-bottom: 2px solid var(--line);
+        }
+      }
+
+      @media (max-width: 440px) {
+        .view-link {
+          padding: 9px 10px;
+          font-size: 12px;
+        }
+
+        .metric {
+          display: grid;
+          gap: 1px;
+          padding: 7px 9px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1 id="page-title">Score vs Cost per Hole</h1>
+        <p class="subhead" id="page-subhead">Compare combined model scores or individual course results. Lower score is better; lower cost is cheaper.</p>
+        <div class="header-nav">
+          <nav class="view-switcher" aria-label="Benchmark views">
+            <a class="view-link" href="index.html">
+              <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
+                <path d="M4 5h16v14H4zM4 10h16M9 5v14"></path>
+              </svg>
+              <span>Leaderboard</span>
+            </a>
+            <a class="view-link" href="scatter.html" aria-current="page">
+              <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
+                <path d="M4 3v17h17"></path>
+                <circle cx="8" cy="15" r="1.5" fill="currentColor" stroke="none"></circle>
+                <circle cx="13" cy="11" r="1.5" fill="currentColor" stroke="none"></circle>
+                <circle cx="18" cy="6" r="1.5" fill="currentColor" stroke="none"></circle>
+              </svg>
+              <span>Score vs Cost</span>
+            </a>
+          </nav>
+          <a class="utility-link" href="how-it-works.html">
+            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 11v6"></path>
+              <circle cx="12" cy="7.5" r="1" fill="currentColor" stroke="none"></circle>
+            </svg>
+            <span>How It Works</span>
+          </a>
+        </div>
+      </header>
+
+      <section class="summary" aria-label="Scatter plot summary">
+        <div class="metric"><span>Points</span><strong id="points">-</strong></div>
+        <div class="metric"><span>Models</span><strong id="models">-</strong></div>
+        <div class="metric"><span>Courses</span><strong id="courses">-</strong></div>
+        <div class="metric"><span id="missing-label">Missing Cost</span><strong id="missing">-</strong></div>
+      </section>
+
+      <section class="panel" aria-label="Plot mode">
+        <span class="panel-label">Plot mode</span>
+        <div class="filters">
+          <label class="filter"><input name="plot-mode" type="radio" value="courses">Course results</label>
+          <label class="filter"><input name="plot-mode" type="radio" value="combined" checked>Combined model score</label>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="Plot metrics">
+        <span class="panel-label">Plot metrics</span>
+        <div class="filters">
+          <label class="filter"><input name="x-metric" type="radio" value="cost" checked>Cost per hole</label>
+          <label class="filter"><input name="x-metric" type="radio" value="latency">Average latency</label>
+          <label class="filter"><input id="scale-markers" type="checkbox"><span id="marker-size-label">Scale marker size by latency</span></label>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="Course filters">
+        <span class="panel-label">Included courses</span>
+        <div class="filters" id="filters"></div>
+      </section>
+
+      <section class="panel" id="plot-panel" aria-label="Score versus cost scatter plot">
+        <div class="chart-wrap" id="chart-wrap">
+          <svg id="plot" role="img" aria-labelledby="plot-title plot-description" viewBox="0 0 1120 650">
+            <title id="plot-title">Benchmark score versus API cost per hole</title>
+            <desc id="plot-description">Lower values are better on both axes.</desc>
+          </svg>
+          <div class="tooltip" id="tooltip" role="status" hidden></div>
+        </div>
+        <div class="legend" id="legend" aria-label="Course legend"></div>
+        <p class="notice" id="notice"></p>
+        <p class="empty" id="empty" hidden>No results with cost data are available for the selected courses.</p>
+      </section>
+
+      <section class="panel" id="axis-panel" aria-label="Cost axis controls">
+        <span class="panel-label" id="axis-panel-label">X-axis cost range (USD per hole)</span>
+        <div class="axis-controls">
+          <label class="axis-control">Minimum<input id="x-min" type="number" min="0" step="0.001" inputmode="decimal"><input id="x-min-slider" type="range" min="0"></label>
+          <label class="axis-control">Maximum<input id="x-max" type="number" min="0" step="0.001" inputmode="decimal"><input id="x-max-slider" type="range" min="0"></label>
+          <button class="axis-button" id="auto-x" type="button">Auto scale</button>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const rawResults = window.CODEGOLF_RESULTS || [];
+      const params = new URLSearchParams(window.location.search);
+      const filters = document.querySelector("#filters");
+      const svg = document.querySelector("#plot");
+      const chartWrap = document.querySelector("#chart-wrap");
+      const tooltip = document.querySelector("#tooltip");
+      const legend = document.querySelector("#legend");
+      const notice = document.querySelector("#notice");
+      const empty = document.querySelector("#empty");
+      const xMinInput = document.querySelector("#x-min");
+      const xMaxInput = document.querySelector("#x-max");
+      const xMinSlider = document.querySelector("#x-min-slider");
+      const xMaxSlider = document.querySelector("#x-max-slider");
+      const autoXButton = document.querySelector("#auto-x");
+      const plotModeInputs = [...document.querySelectorAll('input[name="plot-mode"]')];
+      const xMetricInputs = [...document.querySelectorAll('input[name="x-metric"]')];
+      const scaleMarkersInput = document.querySelector("#scale-markers");
+      const markerSizeLabel = document.querySelector("#marker-size-label");
+      const pageTitle = document.querySelector("#page-title");
+      const pageSubhead = document.querySelector("#page-subhead");
+      const missingLabel = document.querySelector("#missing-label");
+      const plotPanel = document.querySelector("#plot-panel");
+      const axisPanel = document.querySelector("#axis-panel");
+      const axisPanelLabel = document.querySelector("#axis-panel-label");
+      const courseColors = ["#ffd24a", "#73d4ff", "#ff8b5f", "#9df29f", "#d6a7ff"];
+      const SVG_NS = "http://www.w3.org/2000/svg";
+      let hideTooltipTimer;
+      let xAxisAuto = true;
+      let plotMode = params.get("mode") === "courses" ? "courses" : "combined";
+      let xMetric = params.get("x") === "latency" ? "latency" : "cost";
+      let scaleMarkers = params.get("size") === "alternate";
+
+      function modelKey(result) {
+        return String(result.model_key || result.model || result.variant || result.run || "");
+      }
+
+      function courseKey(result) {
+        return String(result.course || "python");
+      }
+
+      function courseLabel(course) {
+        return course.replaceAll("-", " ").replace(/\b\w/g, (char) => char.toUpperCase());
+      }
+
+      function providerKey(result) {
+        const model = String(result.model || modelKey(result));
+        return model.includes("/") ? model.split("/", 1)[0] : "other";
+      }
+
+      function providerLabel(provider) {
+        return provider === "other" ? "Other" : courseLabel(provider);
+      }
+
+      function fmtScore(value) {
+        const number = Number(value);
+        return Number.isFinite(number) ? Math.round(number).toLocaleString() : "-";
+      }
+
+      function fmtCost(value) {
+        const number = Number(value);
+        if (!Number.isFinite(number)) return "-";
+        return `$${number.toFixed(number < 0.01 ? 4 : 2)}`;
+      }
+
+      function fmtLatency(value) {
+        const number = Number(value);
+        if (!Number.isFinite(number)) return "-";
+        return `${number.toFixed(number < 1 ? 3 : 2)}s`;
+      }
+
+      function apiCost(result) {
+        const rawCost = result.api_cost ?? result.api_summary?.cost;
+        if (rawCost === null || rawCost === undefined || rawCost === "") return null;
+        const cost = Number(rawCost);
+        return Number.isFinite(cost) ? cost : null;
+      }
+
+      function costPerHole(result) {
+        const cost = apiCost(result);
+        const holes = Number(result.tasks_total);
+        return cost !== null && holes > 0 ? cost / holes : null;
+      }
+
+      function apiElapsedSeconds(result) {
+        const rawElapsed = result.api_elapsed_seconds ?? result.api_summary?.elapsed_seconds;
+        if (rawElapsed === null || rawElapsed === undefined || rawElapsed === "") return null;
+        const elapsed = Number(rawElapsed);
+        return Number.isFinite(elapsed) && elapsed >= 0 ? elapsed : null;
+      }
+
+      function apiCallCount(result) {
+        const rawCalls = result.api_calls ?? result.api_summary?.api_calls;
+        if (rawCalls === null || rawCalls === undefined || rawCalls === "") return null;
+        const calls = Number(rawCalls);
+        return Number.isFinite(calls) && calls > 0 ? calls : null;
+      }
+
+      function latencyPerRequest(result) {
+        const elapsed = apiElapsedSeconds(result);
+        const calls = apiCallCount(result);
+        return elapsed !== null && calls !== null ? elapsed / calls : null;
+      }
+
+      function xValue(point) {
+        return xMetric === "cost" ? costPerHole(point) : latencyPerRequest(point);
+      }
+
+      function alternateValue(point) {
+        return xMetric === "cost" ? latencyPerRequest(point) : costPerHole(point);
+      }
+
+      function xMetricLabel() {
+        return xMetric === "cost" ? "cost" : "latency";
+      }
+
+      function alternateMetricLabel() {
+        return xMetric === "cost" ? "latency" : "cost";
+      }
+
+      function formatXValue(value) {
+        return xMetric === "cost" ? fmtCost(value) : fmtLatency(value);
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;");
+      }
+
+      function bestResultPerModelCourse(items) {
+        const best = new Map();
+        for (const result of items) {
+          const key = `${modelKey(result)}\u0000${courseKey(result)}`;
+          const current = best.get(key);
+          if (!current || Number(result.score) < Number(current.score)) best.set(key, result);
+        }
+        return [...best.values()];
+      }
+
+      const results = bestResultPerModelCourse(rawResults);
+      const courses = [...new Set(results.map(courseKey))].sort();
+      let selectedCourses = selectedCoursesFromUrl();
+
+      function selectedCoursesFromUrl() {
+        if (!params.has("courses")) return new Set(courses);
+        const requested = new Set(params.get("courses").split(",").filter(Boolean));
+        const selected = courses.filter((course) => requested.has(course));
+        return new Set(selected.length ? selected : courses);
+      }
+
+      function selectedCourseList() {
+        return courses.filter((course) => selectedCourses.has(course));
+      }
+
+      function updateUrl() {
+        const url = new URL(window.location.href);
+        if (selectedCourses.size === courses.length) {
+          url.searchParams.delete("courses");
+        } else {
+          url.searchParams.set("courses", selectedCourseList().join(","));
+        }
+        if (plotMode === "courses") url.searchParams.set("mode", "courses");
+        else url.searchParams.delete("mode");
+        if (xMetric === "latency") url.searchParams.set("x", "latency");
+        else url.searchParams.delete("x");
+        if (scaleMarkers) url.searchParams.set("size", "alternate");
+        else url.searchParams.delete("size");
+        window.history.replaceState(null, "", url.href);
+      }
+
+      function svgElement(name, attributes = {}) {
+        const element = document.createElementNS(SVG_NS, name);
+        for (const [key, value] of Object.entries(attributes)) element.setAttribute(key, value);
+        return element;
+      }
+
+      function markerElement(shape, cx, cy, fill, radius = 8) {
+        const common = { class: "point", fill };
+        if (shape === "square") {
+          const half = radius * 0.875;
+          return svgElement("rect", { ...common, x: cx - half, y: cy - half, width: half * 2, height: half * 2 });
+        }
+        if (shape === "diamond") {
+          const extent = radius * 1.125;
+          return svgElement("polygon", {
+            ...common,
+            points: `${cx},${cy - extent} ${cx + extent},${cy} ${cx},${cy + extent} ${cx - extent},${cy}`,
+          });
+        }
+        if (shape === "triangle") {
+          const extent = radius * 1.125;
+          return svgElement("polygon", {
+            ...common,
+            points: `${cx},${cy - extent} ${cx + extent},${cy + radius} ${cx - extent},${cy + radius}`,
+          });
+        }
+        return svgElement("circle", { ...common, cx, cy, r: radius });
+      }
+
+      function ticks(min, max, count = 5) {
+        return Array.from({ length: count + 1 }, (_, index) => min + ((max - min) * index) / count);
+      }
+
+      function inputValue(value) {
+        const precision = xMetric === "cost" ? 6 : 3;
+        return String(Number(value.toFixed(precision)));
+      }
+
+      function automaticXAxis(points) {
+        const frontierPoints = plotMode === "combined"
+          ? paretoFrontier(points)
+          : selectedCourseList().flatMap((course) => paretoFrontier(
+              points.filter((point) => courseKey(point) === course),
+            ));
+        const maxValue = Math.max(...frontierPoints.map(xValue), 0);
+        return { min: 0, max: maxValue > 0 ? maxValue : 1 };
+      }
+
+      function xAxisLimits(points) {
+        const automatic = automaticXAxis(points);
+        if (xAxisAuto) {
+          xMinInput.value = inputValue(automatic.min);
+          xMaxInput.value = inputValue(automatic.max);
+          return { ...automatic, invalid: false };
+        }
+
+        const min = Number(xMinInput.value);
+        const max = Number(xMaxInput.value);
+        if (Number.isFinite(min) && Number.isFinite(max) && min >= 0 && max > min) {
+          return { min, max, invalid: false };
+        }
+        return { ...automatic, invalid: true };
+      }
+
+      function syncAxisSliders(points, xAxis) {
+        const precisionScale = xMetric === "cost" ? 1_000_000 : 1_000;
+        const rawDataMax = Math.max(...points.map(xValue), 0);
+        const dataMax = Math.ceil(rawDataMax * precisionScale) / precisionScale;
+        const minimumMax = xMetric === "cost" ? 0.001 : 1;
+        const max = Math.max(dataMax, xAxis.max, minimumMax);
+        // Make the endpoint an exact step and round it upward at the precision
+        // displayed by the numeric controls so the most expensive/slowest point fits.
+        const step = max / 1000;
+        for (const slider of [xMinSlider, xMaxSlider]) {
+          slider.max = String(max);
+          slider.step = String(step);
+        }
+        const inputStep = String(1 / precisionScale);
+        xMinInput.step = inputStep;
+        xMaxInput.step = inputStep;
+        xMinSlider.value = String(Math.min(xAxis.min, max));
+        xMaxSlider.value = String(Math.min(xAxis.max, max));
+      }
+
+      function colorForCourse(course) {
+        return courseColors[courses.indexOf(course) % courseColors.length];
+      }
+
+      function shapeForPoint(point) {
+        if (point.combined) return "diamond";
+        return ["circle", "square", "triangle"][courses.indexOf(courseKey(point)) % 3];
+      }
+
+      function pointLink(point) {
+        const model = encodeURIComponent(modelKey(point));
+        if (point.combined) return `model.html?model=${model}`;
+        return `model.html?model=${model}&course=${encodeURIComponent(courseKey(point))}`;
+      }
+
+      function showTooltip(point, marker, event) {
+        window.clearTimeout(hideTooltipTimer);
+        const frame = chartWrap.getBoundingClientRect();
+        const markerRect = marker.getBoundingClientRect();
+        tooltip.innerHTML = `
+          <strong>${escapeHtml(point.model || modelKey(point))}</strong>
+          <span>${escapeHtml(point.combined ? `Combined: ${point.courses.map(courseLabel).join(" + ")}` : courseLabel(courseKey(point)))}</span>
+          <span>Provider: ${escapeHtml(providerLabel(providerKey(point)))}</span>
+          <span>Score: ${fmtScore(point.score)}</span>
+          <span>Cost/hole: ${fmtCost(costPerHole(point))}</span>
+          <span>Average API latency: ${fmtLatency(latencyPerRequest(point))}</span>
+          <a href="${pointLink(point)}">Open model/course results</a>
+        `;
+        tooltip.hidden = false;
+        const eventX = event ? event.clientX - frame.left : markerRect.right - frame.left;
+        const eventY = event ? event.clientY - frame.top : markerRect.top - frame.top;
+        const left = Math.min(eventX + 14, frame.width - tooltip.offsetWidth - 8);
+        const top = Math.max(8, eventY - tooltip.offsetHeight - 12);
+        tooltip.style.left = `${Math.max(8, left)}px`;
+        tooltip.style.top = `${top}px`;
+      }
+
+      function hideTooltip() {
+        window.clearTimeout(hideTooltipTimer);
+        tooltip.hidden = true;
+      }
+
+      function scheduleTooltipHide() {
+        window.clearTimeout(hideTooltipTimer);
+        hideTooltipTimer = window.setTimeout(hideTooltip, 160);
+      }
+
+      function renderFilters() {
+        filters.textContent = "";
+        for (const course of courses) {
+          const label = document.createElement("label");
+          label.className = "filter";
+          const input = document.createElement("input");
+          input.type = "checkbox";
+          input.checked = selectedCourses.has(course);
+          input.disabled = input.checked && selectedCourses.size === 1;
+          input.addEventListener("change", () => {
+            if (input.checked) selectedCourses.add(course);
+            else selectedCourses.delete(course);
+            updateUrl();
+            render();
+          });
+          label.append(input, document.createTextNode(courseLabel(course)));
+          filters.appendChild(label);
+        }
+      }
+
+      function appendLegendItem(label, color, shape) {
+        const item = document.createElement("span");
+        item.className = "legend-item";
+        const dot = document.createElement("span");
+        dot.className = `legend-dot ${shape}`;
+        dot.style.background = color;
+        item.append(dot, document.createTextNode(label));
+        legend.appendChild(item);
+      }
+
+      function appendLegendLabel(label) {
+        const item = document.createElement("span");
+        item.className = "legend-label";
+        item.textContent = label;
+        legend.appendChild(item);
+      }
+
+      function appendFrontierLegend() {
+        const item = document.createElement("span");
+        item.className = "legend-item";
+        const line = document.createElement("span");
+        line.className = "legend-line";
+        item.append(line, document.createTextNode("Pareto frontier"));
+        legend.appendChild(item);
+      }
+
+      function renderLegend(points) {
+        legend.textContent = "";
+        if (plotMode === "combined") {
+          appendLegendLabel("Marker: result type");
+          appendLegendItem("Combined selected courses", "#fffbe6", "diamond");
+        } else {
+          appendLegendLabel("Color and shape: course");
+          for (const course of selectedCourseList()) {
+            appendLegendItem(courseLabel(course), colorForCourse(course), shapeForPoint({ course }));
+          }
+        }
+        appendFrontierLegend();
+        if (scaleMarkers) appendLegendLabel(`Marker size: relative ${alternateMetricLabel()}`);
+      }
+
+      function paretoFrontier(points) {
+        const ordered = [...points].sort((a, b) => (
+          xValue(a) - xValue(b) || Number(a.score) - Number(b.score)
+        ));
+        const frontier = [];
+        let lowestScore = Number.POSITIVE_INFINITY;
+        for (const point of ordered) {
+          if (Number(point.score) < lowestScore) {
+            frontier.push(point);
+            lowestScore = Number(point.score);
+          }
+        }
+        return frontier;
+      }
+
+      function markerRadius(point, points) {
+        if (!scaleMarkers) return 8;
+        const values = points.map(alternateValue).filter((value) => value !== null);
+        const value = alternateValue(point);
+        if (value === null || !values.length) return 8;
+        const min = Math.min(...values);
+        const max = Math.max(...values);
+        if (max === min) return 11;
+        const normalized = (Math.sqrt(value) - Math.sqrt(min)) / (Math.sqrt(max) - Math.sqrt(min));
+        return 6 + Math.max(0, Math.min(1, normalized)) * 10;
+      }
+
+      function frontierModelLabel(point) {
+        const model = String(point.model || modelKey(point));
+        return model.length > 26 ? `${model.slice(0, 23)}…` : model;
+      }
+
+      function labelsOverlap(first, second) {
+        return !(
+          first.right < second.left || first.left > second.right ||
+          first.bottom < second.top || first.top > second.bottom
+        );
+      }
+
+      function renderPlot(points, xAxis) {
+        const width = 1120;
+        const height = 650;
+        const margin = { top: 34, right: 28, bottom: 72, left: 88 };
+        const plotWidth = width - margin.left - margin.right;
+        const plotHeight = height - margin.top - margin.bottom;
+        const maxScore = Math.max(...points.map((point) => Number(point.score)), 0);
+        const yMax = maxScore > 0 ? maxScore * 1.1 : 1;
+        const x = (value) => margin.left + ((value - xAxis.min) / (xAxis.max - xAxis.min)) * plotWidth;
+        const y = (value) => margin.top + (value / yMax) * plotHeight;
+
+        svg.replaceChildren(
+          svgElement("title", { id: "plot-title" }),
+          svgElement("desc", { id: "plot-description" }),
+        );
+        svg.querySelector("title").textContent = xMetric === "cost"
+          ? "Benchmark score versus API cost per hole"
+          : "Benchmark score versus average API request latency";
+        svg.querySelector("desc").textContent = "Lower values are better on both axes.";
+
+        for (const value of ticks(xAxis.min, xAxis.max)) {
+          const line = svgElement("line", {
+            class: "grid-line", x1: x(value), x2: x(value), y1: margin.top, y2: margin.top + plotHeight,
+          });
+          svg.appendChild(line);
+          const label = svgElement("text", {
+            class: "tick-label", x: x(value), y: margin.top + plotHeight + 24, "text-anchor": "middle",
+          });
+          label.textContent = formatXValue(value);
+          svg.appendChild(label);
+        }
+
+        for (const value of ticks(0, yMax)) {
+          const line = svgElement("line", {
+            class: "grid-line", x1: margin.left, x2: margin.left + plotWidth, y1: y(value), y2: y(value),
+          });
+          svg.appendChild(line);
+          const label = svgElement("text", {
+            class: "tick-label", x: margin.left - 12, y: y(value) + 5, "text-anchor": "end",
+          });
+          label.textContent = fmtScore(value);
+          svg.appendChild(label);
+        }
+
+        svg.appendChild(svgElement("line", {
+          class: "axis-line", x1: margin.left, x2: margin.left + plotWidth,
+          y1: margin.top + plotHeight, y2: margin.top + plotHeight,
+        }));
+        svg.appendChild(svgElement("line", {
+          class: "axis-line", x1: margin.left, x2: margin.left,
+          y1: margin.top, y2: margin.top + plotHeight,
+        }));
+
+        const xLabel = svgElement("text", {
+          class: "axis-label", x: margin.left + plotWidth / 2, y: height - 18, "text-anchor": "middle",
+        });
+        xLabel.textContent = xMetric === "cost"
+          ? "Average API cost per hole (USD) — lower is better"
+          : "Average API request latency (seconds) — lower is better";
+        svg.appendChild(xLabel);
+        const yLabel = svgElement("text", {
+          class: "axis-label", transform: `translate(20 ${margin.top + plotHeight / 2}) rotate(-90)`,
+          "text-anchor": "middle",
+        });
+        yLabel.textContent = "Score — lower is better";
+        svg.appendChild(yLabel);
+
+        const frontierGroups = plotMode === "combined"
+          ? [{ points, color: "#7d4aa8" }]
+          : selectedCourseList().map((course) => ({
+              points: points.filter((point) => courseKey(point) === course),
+              color: colorForCourse(course),
+            }));
+        const frontierPoints = [];
+        for (const group of frontierGroups) {
+          const frontier = paretoFrontier(group.points);
+          frontierPoints.push(...frontier);
+          if (frontier.length < 2) continue;
+          svg.appendChild(svgElement("polyline", {
+            class: "frontier-line",
+            stroke: group.color,
+            points: frontier.map((point) => `${x(xValue(point))},${y(Number(point.score))}`).join(" "),
+          }));
+        }
+
+        for (const point of points) {
+          const pointCourse = point.combined ? "combined" : courseKey(point);
+          const group = svgElement("g", {
+            tabindex: "0",
+            role: "link",
+            "aria-label": `${point.model || modelKey(point)}, ${point.combined ? "combined course" : courseLabel(pointCourse)} results`,
+          });
+          const marker = markerElement(
+            shapeForPoint(point), x(xValue(point)), y(Number(point.score)),
+            point.combined ? "#d6a7ff" : colorForCourse(pointCourse),
+            markerRadius(point, points),
+          );
+          const title = svgElement("title");
+          const pointLabel = point.combined
+            ? `Combined: ${point.courses.map(courseLabel).join(" + ")}`
+            : courseLabel(pointCourse);
+          title.textContent = `${point.model || modelKey(point)} — ${pointLabel}; score ${fmtScore(point.score)}; cost per hole ${fmtCost(costPerHole(point))}; average API latency ${fmtLatency(latencyPerRequest(point))}`;
+          group.append(marker, title);
+          group.addEventListener("pointerenter", (event) => showTooltip(point, marker, event));
+          group.addEventListener("pointermove", (event) => showTooltip(point, marker, event));
+          group.addEventListener("pointerleave", scheduleTooltipHide);
+          group.addEventListener("focus", () => showTooltip(point, marker));
+          group.addEventListener("blur", scheduleTooltipHide);
+          group.addEventListener("click", () => { window.location.href = pointLink(point); });
+          group.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              window.location.href = pointLink(point);
+            }
+          });
+          svg.appendChild(group);
+        }
+
+        const occupiedLabels = [];
+        const pointBounds = points.map((point) => {
+          const markerX = x(xValue(point));
+          const markerY = y(Number(point.score));
+          const clearance = markerRadius(point, points) + 4;
+          return {
+            left: markerX - clearance,
+            right: markerX + clearance,
+            top: markerY - clearance,
+            bottom: markerY + clearance,
+          };
+        });
+        const labelBounds = {
+          left: margin.left + 4,
+          right: margin.left + plotWidth - 4,
+          top: margin.top + 13,
+          bottom: margin.top + plotHeight - 4,
+        };
+        for (const point of frontierPoints.sort((a, b) => y(Number(a.score)) - y(Number(b.score)))) {
+          const markerX = x(xValue(point));
+          const markerY = y(Number(point.score));
+          const labelText = frontierModelLabel(point);
+          const labelWidth = labelText.length * 8.2 + 8;
+          const placements = [];
+          for (const distance of [36, 72, 108, 144, 180]) {
+            const verticalOffset = Math.max(24, distance * 0.35);
+            placements.push(
+              { x: markerX + distance, y: markerY - verticalOffset, anchor: "start" },
+              { x: markerX + distance, y: markerY + verticalOffset, anchor: "start" },
+              { x: markerX - distance, y: markerY - verticalOffset, anchor: "end" },
+              { x: markerX - distance, y: markerY + verticalOffset, anchor: "end" },
+              { x: markerX + distance, y: markerY - 11, anchor: "start" },
+              { x: markerX + distance, y: markerY + 17, anchor: "start" },
+              { x: markerX - distance, y: markerY - 11, anchor: "end" },
+              { x: markerX - distance, y: markerY + 17, anchor: "end" },
+              { x: markerX, y: markerY - distance, anchor: "middle" },
+              { x: markerX, y: markerY + distance, anchor: "middle" },
+            );
+          }
+          let placement;
+          let box;
+          for (const candidate of placements) {
+            const left = candidate.anchor === "start"
+              ? candidate.x
+              : candidate.anchor === "end" ? candidate.x - labelWidth : candidate.x - labelWidth / 2;
+            const candidateBox = { left, right: left + labelWidth, top: candidate.y - 15, bottom: candidate.y + 5 };
+            const inBounds = candidateBox.left >= labelBounds.left && candidateBox.right <= labelBounds.right &&
+              candidateBox.top >= labelBounds.top && candidateBox.bottom <= labelBounds.bottom;
+            const collisionBox = {
+              left: candidateBox.left - 5,
+              right: candidateBox.right + 5,
+              top: candidateBox.top - 4,
+              bottom: candidateBox.bottom + 4,
+            };
+            const overlapsLabel = occupiedLabels.some((existing) => labelsOverlap(existing, collisionBox));
+            const overlapsPoint = pointBounds.some((existing) => labelsOverlap(existing, collisionBox));
+            if (inBounds && !overlapsLabel && !overlapsPoint) {
+              placement = candidate;
+              box = candidateBox;
+              break;
+            }
+          }
+          if (!placement) continue;
+          occupiedLabels.push(box);
+          const lineX = placement.anchor === "start"
+            ? placement.x - 4
+            : placement.anchor === "end" ? placement.x + 4 : placement.x;
+          const lineY = placement.y - 4;
+          svg.appendChild(svgElement("line", {
+            class: "frontier-leader", x1: markerX, y1: markerY, x2: lineX, y2: lineY,
+          }));
+          const label = svgElement("text", {
+            class: "frontier-label",
+            x: placement.x,
+            y: placement.y,
+            "text-anchor": placement.anchor,
+          });
+          label.textContent = labelText;
+          svg.appendChild(label);
+        }
+      }
+
+      function combinedPoints(selectedResults, selectedCourses) {
+        const byModel = new Map();
+        for (const result of selectedResults) {
+          const key = modelKey(result);
+          if (!byModel.has(key)) byModel.set(key, []);
+          byModel.get(key).push(result);
+        }
+
+        const points = [];
+        let incomplete = 0;
+        for (const [key, modelResults] of byModel) {
+          const byCourse = new Map(modelResults.map((result) => [courseKey(result), result]));
+          if (!selectedCourses.every((course) => byCourse.has(course))) {
+            incomplete += 1;
+            continue;
+          }
+          const courseResults = selectedCourses.map((course) => byCourse.get(course));
+          const costs = courseResults.map(apiCost);
+          const elapsedTimes = courseResults.map(apiElapsedSeconds);
+          const callCounts = courseResults.map(apiCallCount);
+          points.push({
+            combined: true,
+            courses: selectedCourses,
+            model_key: key,
+            model: courseResults[0].model || key,
+            score: courseResults.reduce((total, result) => total + Number(result.score || 0), 0),
+            tasks_total: courseResults.reduce((total, result) => total + Number(result.tasks_total || 0), 0),
+            api_cost: costs.every((cost) => cost !== null)
+              ? costs.reduce((total, cost) => total + cost, 0)
+              : null,
+            api_elapsed_seconds: elapsedTimes.every((elapsed) => elapsed !== null)
+              ? elapsedTimes.reduce((total, elapsed) => total + elapsed, 0)
+              : null,
+            api_calls: callCounts.every((calls) => calls !== null)
+              ? callCounts.reduce((total, calls) => total + calls, 0)
+              : null,
+          });
+        }
+        return { points, incomplete };
+      }
+
+      function render() {
+        for (const input of plotModeInputs) input.checked = input.value === plotMode;
+        for (const input of xMetricInputs) input.checked = input.value === xMetric;
+        scaleMarkersInput.checked = scaleMarkers;
+        markerSizeLabel.textContent = `Scale marker size by ${alternateMetricLabel()}`;
+        const metricName = xMetricLabel();
+        document.title = xMetric === "cost" ? "Score vs Cost per Hole" : "Score vs API Latency";
+        pageTitle.textContent = document.title;
+        pageSubhead.textContent = xMetric === "cost"
+          ? "Compare combined model scores or individual course results. Lower score is better; lower cost is cheaper."
+          : "Compare combined model scores or individual course results. Lower score is better; lower API latency is faster.";
+        missingLabel.textContent = `Missing ${courseLabel(metricName)}`;
+        plotPanel.setAttribute("aria-label", `Score versus ${metricName} scatter plot`);
+        axisPanel.setAttribute("aria-label", `${courseLabel(metricName)} axis controls`);
+        axisPanelLabel.textContent = xMetric === "cost"
+          ? "X-axis cost range (USD per hole)"
+          : "X-axis average API latency range (seconds per request)";
+        renderFilters();
+        const selected = new Set(selectedCourseList());
+        const selectedResults = results.filter((result) => selected.has(courseKey(result)));
+        const combined = plotMode === "combined"
+          ? combinedPoints(selectedResults, selectedCourseList())
+          : { points: selectedResults, incomplete: 0 };
+        const candidatePoints = combined.points;
+        const plottablePoints = candidatePoints.filter((result) => xValue(result) !== null && Number.isFinite(Number(result.score)));
+        const missing = candidatePoints.length - plottablePoints.length;
+        const xAxis = xAxisLimits(plottablePoints);
+        syncAxisSliders(plottablePoints, xAxis);
+        const points = plottablePoints.filter((result) => {
+          const value = xValue(result);
+          return value >= xAxis.min && value <= xAxis.max;
+        });
+        const outsideRange = plottablePoints.length - points.length;
+        renderLegend(points);
+        document.querySelector("#points").textContent = points.length;
+        document.querySelector("#models").textContent = new Set(points.map(modelKey)).size;
+        document.querySelector("#courses").textContent = selected.size;
+        document.querySelector("#missing").textContent = missing;
+        const messages = [];
+        if (combined.incomplete) messages.push(`${combined.incomplete} model${combined.incomplete === 1 ? "" : "s"} omitted because results are missing for one or more selected courses.`);
+        if (missing) messages.push(`${missing} result${missing === 1 ? "" : "s"} omitted because ${metricName} data is unavailable.`);
+        if (outsideRange) messages.push(`${outsideRange} point${outsideRange === 1 ? "" : "s"} outside the selected x-axis range.`);
+        if (xAxis.invalid) messages.push("Use a non-negative minimum below the maximum; automatic limits are shown until then.");
+        if (!messages.length) messages.push("Hover or focus a point for details and a link to the model/course results.");
+        notice.textContent = messages.join(" ");
+        empty.textContent = plottablePoints.length
+          ? "No results fall within the selected x-axis range."
+          : `No results with ${metricName} data are available for the selected courses.`;
+        empty.hidden = points.length > 0;
+        svg.hidden = points.length === 0;
+        legend.hidden = points.length === 0;
+        if (points.length) renderPlot(points, xAxis);
+        else hideTooltip();
+      }
+
+      render();
+      for (const input of [xMinInput, xMaxInput]) {
+        input.addEventListener("change", () => {
+          xAxisAuto = false;
+          render();
+        });
+      }
+      autoXButton.addEventListener("click", () => {
+        xAxisAuto = true;
+        render();
+      });
+      for (const slider of [xMinSlider, xMaxSlider]) {
+        slider.addEventListener("input", () => {
+          xAxisAuto = false;
+          let min = Number(xMinSlider.value);
+          let max = Number(xMaxSlider.value);
+          const step = Number(slider.step);
+          if (min >= max) {
+            if (slider === xMinSlider) min = Math.min(min, Math.max(0, max - step));
+            else max = Math.max(max, Math.min(Number(slider.max), min + step));
+          }
+          xMinInput.value = inputValue(min);
+          xMaxInput.value = inputValue(max);
+          render();
+        });
+      }
+      for (const input of plotModeInputs) {
+        input.addEventListener("change", () => {
+          plotMode = input.value;
+          updateUrl();
+          render();
+        });
+      }
+      for (const input of xMetricInputs) {
+        input.addEventListener("change", () => {
+          xMetric = input.value;
+          xAxisAuto = true;
+          updateUrl();
+          render();
+        });
+      }
+      scaleMarkersInput.addEventListener("change", () => {
+        scaleMarkers = scaleMarkersInput.checked;
+        updateUrl();
+        render();
+      });
+      tooltip.addEventListener("pointerenter", () => window.clearTimeout(hideTooltipTimer));
+      tooltip.addEventListener("pointerleave", scheduleTooltipHide);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,922 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Code Golf Benchmark v0.1 Leaderboard</title>
+    <link rel="icon" type="image/png" href="code_golf_bench_background1.png">
+    <script src="results.js"></script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #102017;
+        --panel: #fff8d8;
+        --panel-2: #e9f7b9;
+        --text: #1b2a20;
+        --muted: #47614d;
+        --line: #243f2c;
+        --ink: #08150d;
+        --link: #075f48;
+        --good: #116530;
+        --gold: #ffd24a;
+        --sky: #73d4ff;
+        --shadow: rgba(2, 10, 5, 0.42);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          linear-gradient(rgba(9, 21, 13, 0.1), rgba(9, 21, 13, 0.8)),
+          url("code_golf_bench_background1.png") center top / cover fixed,
+          var(--bg);
+        color: var(--text);
+        font: 14px/1.45 "Courier New", ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      main {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 28px 20px 44px;
+      }
+
+      header {
+        min-height: 260px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        margin-bottom: 18px;
+        color: #fffbe6;
+        text-shadow: 0 3px 0 #0a1b10, 0 0 12px rgba(0, 0, 0, 0.6);
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 760px;
+        font-size: clamp(34px, 7vw, 72px);
+        line-height: 0.95;
+        font-weight: 900;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .title-version {
+        display: inline-block;
+        margin-left: 0.15em;
+        color: var(--gold);
+        font-size: 0.42em;
+        line-height: 1;
+        text-transform: none;
+        vertical-align: 0.35em;
+      }
+
+      .subhead {
+        max-width: 640px;
+        margin: 12px 0 0;
+        color: #f8edb2;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .header-nav {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .view-switcher {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .view-link,
+      .utility-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: rgba(8, 21, 13, 0.78);
+        color: #fffbe6;
+        text-shadow: none;
+        text-transform: uppercase;
+      }
+
+      .view-link {
+        border: 3px solid #fffbe6;
+        padding: 11px 15px;
+        box-shadow: 4px 4px 0 rgba(2, 10, 5, 0.55);
+        font-weight: 800;
+      }
+
+      .view-link + .view-link {
+        margin-left: -3px;
+      }
+
+      .view-link[aria-current="page"] {
+        position: relative;
+        z-index: 1;
+        background: var(--gold);
+        color: var(--ink);
+      }
+
+      .plot-view-link:not([aria-current="page"]) {
+        background: var(--sky);
+        color: var(--ink);
+      }
+
+      .utility-link {
+        border: 2px solid #fffbe6;
+        padding: 7px 9px;
+        box-shadow: 3px 3px 0 rgba(2, 10, 5, 0.55);
+        font-size: 12px;
+      }
+
+      .summary {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        background: var(--panel);
+        border: 3px solid var(--ink);
+        box-shadow: 4px 4px 0 var(--shadow);
+        margin-bottom: 20px;
+      }
+
+      .metric {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        min-width: 0;
+        padding: 9px 12px;
+      }
+
+      .metric:not(:last-child) {
+        border-right: 2px solid var(--line);
+      }
+
+      .metric span {
+        color: var(--muted);
+        font-size: 11px;
+        text-transform: uppercase;
+      }
+
+      .metric strong {
+        font-size: 18px;
+        color: var(--ink);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--panel);
+        border: 3px solid var(--ink);
+        border-radius: 0;
+        box-shadow: 5px 5px 0 var(--shadow);
+        overflow: hidden;
+      }
+
+      th,
+      td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+
+      th {
+        background: var(--line);
+        color: #fff7c2;
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      th.sortable {
+        cursor: pointer;
+        user-select: none;
+      }
+
+      th.sortable::after {
+        content: " <> ";
+        color: var(--gold);
+      }
+
+      th.sort-asc::after {
+        content: " ^ ";
+      }
+
+      th.sort-desc::after {
+        content: " v ";
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      td.number,
+      th.number {
+        text-align: right;
+      }
+
+      a {
+        color: var(--link);
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      a:hover {
+        background: var(--gold);
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .view-link:hover,
+      .utility-link:hover {
+        background: var(--gold);
+        color: var(--ink);
+        text-shadow: none;
+      }
+
+      .rank {
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .passed {
+        color: var(--good);
+        font-weight: 650;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        padding: 0 5px 5px 0;
+      }
+
+      .tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0 0 14px;
+      }
+
+      .course-tab {
+        position: relative;
+      }
+
+      .tab {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        border: 3px solid var(--ink);
+        border-radius: 0;
+        background: var(--panel);
+        color: var(--ink);
+        box-shadow: 4px 4px 0 var(--shadow);
+        cursor: pointer;
+        font: inherit;
+        font-weight: 800;
+        padding: 8px 12px;
+        text-transform: uppercase;
+      }
+
+      .button-icon {
+        flex: 0 0 auto;
+        width: 17px;
+        height: 17px;
+        stroke-width: 2;
+      }
+
+      .course-icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .tab[aria-selected="true"] {
+        background: var(--gold);
+      }
+
+      .course-tab:not(.is-counted) .tab:not([aria-selected="true"]) {
+        color: var(--muted);
+        opacity: 0.72;
+      }
+
+      .course-view-tab {
+        padding-right: 30px;
+      }
+
+      .course-toggle {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
+      }
+
+      .course-toggle input {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        opacity: 0;
+        cursor: inherit;
+      }
+
+      .course-toggle-mark {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 2px solid var(--ink);
+        border-radius: 0;
+        background: var(--panel);
+        color: transparent;
+        font-size: 15px;
+        font-weight: 900;
+        line-height: 18px;
+        text-align: center;
+      }
+
+      .course-toggle input:checked + .course-toggle-mark {
+        background: var(--good);
+        color: #fffbe6;
+      }
+
+      .course-toggle input:focus-visible + .course-toggle-mark {
+        outline: 3px solid var(--sky);
+        outline-offset: 2px;
+      }
+
+      .course-toggle.is-disabled {
+        cursor: not-allowed;
+      }
+
+      @media (max-width: 760px) {
+        body {
+          background-attachment: scroll;
+        }
+
+        header {
+          min-height: 220px;
+        }
+
+        .summary {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .metric:not(:last-child) {
+          border-right: 0;
+        }
+
+        .metric:nth-child(odd) {
+          border-right: 2px solid var(--line);
+        }
+
+        .metric:nth-child(-n + 2) {
+          border-bottom: 2px solid var(--line);
+        }
+      }
+
+      @media (max-width: 440px) {
+        .view-link {
+          padding: 9px 10px;
+          font-size: 12px;
+        }
+
+        .metric {
+          display: grid;
+          gap: 1px;
+          padding: 7px 9px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Code Golf Benchmark <span class="title-version">v0.1</span> Leaderboard</h1>
+        <p class="subhead">Lower score is better. Select a model for hole-by-hole results. <span id="test-set-label"></span></p>
+        <div class="header-nav">
+          <nav class="view-switcher" aria-label="Benchmark views">
+            <a class="view-link" href="index.html" aria-current="page">
+              <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
+                <path d="M4 5h16v14H4zM4 10h16M9 5v14"></path>
+              </svg>
+              <span>Leaderboard</span>
+            </a>
+            <a class="view-link plot-view-link" id="scatter-link" href="scatter.html">
+              <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
+                <path d="M4 3v17h17"></path>
+                <circle cx="8" cy="15" r="1.5" fill="currentColor" stroke="none"></circle>
+                <circle cx="13" cy="11" r="1.5" fill="currentColor" stroke="none"></circle>
+                <circle cx="18" cy="6" r="1.5" fill="currentColor" stroke="none"></circle>
+              </svg>
+              <span>Score vs Cost</span>
+            </a>
+          </nav>
+          <a class="utility-link" href="how-it-works.html">
+            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 11v6"></path>
+              <circle cx="12" cy="7.5" r="1" fill="currentColor" stroke="none"></circle>
+            </svg>
+            <span>How It Works</span>
+          </a>
+        </div>
+      </header>
+
+      <section class="summary" aria-label="Benchmark summary">
+        <div class="metric"><span>Models</span><strong id="models">-</strong></div>
+        <div class="metric"><span>Best Score ↓</span><strong id="best-score">-</strong></div>
+        <div class="metric"><span id="course-label">Courses</span><strong id="course">-</strong></div>
+        <div class="metric"><span>Holes</span><strong id="holes">-</strong></div>
+      </section>
+
+      <nav class="tabs" id="tabs" aria-label="Leaderboard views"></nav>
+
+      <div class="table-wrap">
+        <table>
+          <thead id="leaderboard-head"></thead>
+          <tbody id="leaderboard"></tbody>
+        </table>
+      </div>
+    </main>
+
+    <script>
+      const rawResults = window.CODEGOLF_RESULTS || [];
+      const rows = document.querySelector("#leaderboard");
+      const head = document.querySelector("#leaderboard-head");
+      const tabs = document.querySelector("#tabs");
+      const scatterLink = document.querySelector("#scatter-link");
+      const ALL_COURSES = "__all__";
+      let activeView = ALL_COURSES;
+      let sortState = { key: "rank", direction: "asc" };
+
+      function fmtScore(value) {
+        if (!Number.isFinite(Number(value))) return "-";
+        return Math.round(Number(value)).toLocaleString();
+      }
+
+      function fmtCost(value) {
+        if (value === null || value === undefined || value === "") return "-";
+        const number = Number(value);
+        if (!Number.isFinite(number)) return "-";
+        return `$${number.toFixed(number < 0.01 ? 4 : 2)}`;
+      }
+
+      function pct(value) {
+        return `${Math.round(value * 100)}%`;
+      }
+
+      function testFraction(result) {
+        return `${result.tests_passed}/${result.tests_total}`;
+      }
+
+      function correctnessCell(result) {
+        return `${pct(result.correctness)} (${testFraction(result)})`;
+      }
+
+      function rawByteCount(result) {
+        return Number(result.raw_bytes ?? result.bytes ?? 0);
+      }
+
+      function penaltyPoints(result) {
+        const penalty = Number(result.penalty_points ?? (Number(result.score) - rawByteCount(result)));
+        return Number.isFinite(penalty) ? Math.max(0, penalty) : penalty;
+      }
+
+      function apiCost(result) {
+        const rawCost = result.api_cost ?? result.api_summary?.cost;
+        if (rawCost === null || rawCost === undefined || rawCost === "") return null;
+        const cost = Number(rawCost);
+        return Number.isFinite(cost) ? cost : null;
+      }
+
+      function costPerHole(result) {
+        if (result.cost_per_hole !== undefined) {
+          const value = Number(result.cost_per_hole);
+          return Number.isFinite(value) ? value : null;
+        }
+        const cost = apiCost(result);
+        const holes = Number(result.tasks_total);
+        return cost !== null && holes > 0 ? cost / holes : null;
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;");
+      }
+
+      function modelKey(result) {
+        return String(result.model_key || result.model || result.variant || result.run || "");
+      }
+
+      function courseKey(result) {
+        return String(result.course || "python");
+      }
+
+      function courseLabel(course) {
+        return course.replaceAll("-", " ").replace(/\b\w/g, (char) => char.toUpperCase());
+      }
+
+      const courseIcons = {
+        python: {
+          viewBox: "10 8 108 110",
+          markup: `
+            <path fill="#3776ab" d="M63.391 1.988c-4.222.02-8.252.379-11.8 1.007-10.45 1.846-12.346 5.71-12.346 12.837v9.411h24.693v3.137H29.977c-7.176 0-13.46 4.313-15.426 12.521-2.268 9.405-2.368 15.275 0 25.096 1.755 7.311 5.947 12.519 13.124 12.519h8.491V67.234c0-8.151 7.051-15.34 15.426-15.34h24.665c6.866 0 12.346-5.654 12.346-12.548V15.833c0-6.693-5.646-11.72-12.346-12.837-4.244-.706-8.645-1.027-12.866-1.008zM50.037 9.557c2.55 0 4.634 2.117 4.634 4.721 0 2.593-2.083 4.69-4.634 4.69-2.56 0-4.633-2.097-4.633-4.69-.001-2.604 2.073-4.721 4.633-4.721z" transform="translate(0 10.26)"></path>
+            <path fill="#ffd43b" d="M91.682 28.38v10.966c0 8.5-7.208 15.655-15.426 15.655H51.591c-6.756 0-12.346 5.783-12.346 12.549v23.515c0 6.691 5.818 10.628 12.346 12.547 7.816 2.297 15.312 2.713 24.665 0 6.216-1.801 12.346-5.423 12.346-12.547v-9.412H63.938v-3.138h37.012c7.176 0 9.852-5.005 12.348-12.519 2.578-7.735 2.467-15.174 0-25.096-1.774-7.145-5.161-12.521-12.348-12.521h-9.268zM77.809 87.927c2.561 0 4.634 2.097 4.634 4.692 0 2.602-2.074 4.719-4.634 4.719-2.55 0-4.633-2.117-4.633-4.719 0-2.595 2.083-4.692 4.633-4.692z" transform="translate(0 10.26)"></path>
+          `,
+        },
+        racket: {
+          viewBox: "0 0 24 24",
+          markup: `
+            <path fill="#3e5ba9" d="M12 0a11.95 11.95 0 0 0-4.104.721c4.872 2.556 11.316 10.893 13.547 18.686A11.957 11.957 0 0 0 24 12c0-6.627-5.373-12-12-12z"></path>
+            <path fill="#9f1d20" d="M4.093 2.974A11.971 11.971 0 0 0 0 12c0 3.026 1.12 5.789 2.968 7.9 1.629-4.894 4.691-9.611 7.313-12.246-1.872-2.016-3.968-3.618-6.188-4.68zM6.369 22.599A11.947 11.947 0 0 0 12 24c2.092 0 4.059-.536 5.772-1.478-.987-4.561-2.851-8.739-5.28-12.147-2.597 2.8-5.186 7.702-6.123 12.224z"></path>
+          `,
+        },
+        rust: {
+          viewBox: "0 0 24 24",
+          markup: `
+            <path fill="currentColor" d="M23.835 11.703l-1.008-.623a13.7 13.7 0 0 0-.028-.294l.866-.807a.348.348 0 0 0-.116-.578l-1.106-.414a8.5 8.5 0 0 0-.087-.285l.69-.959a.346.346 0 0 0-.225-.545l-1.167-.189a9.4 9.4 0 0 0-.14-.262l.49-1.076a.344.344 0 0 0-.028-.336.349.349 0 0 0-.3-.154l-1.185.041a6.8 6.8 0 0 0-.187-.226l.272-1.153a.347.347 0 0 0-.417-.418l-1.153.273a14 14 0 0 0-.228-.187l.042-1.185a.344.344 0 0 0-.49-.328l-1.076.491a9.7 9.7 0 0 0-.263-.141L16.256.955a.348.348 0 0 0-.545-.226l-.96.691a8.5 8.5 0 0 0-.285-.086l-.414-1.106a.348.348 0 0 0-.578-.116l-.807.867a9.3 9.3 0 0 0-.294-.029L12.295.168a.346.346 0 0 0-.59 0l-.623 1.007a13.7 13.7 0 0 0-.294.029L9.98.337a.346.346 0 0 0-.578.116l-.414 1.106a8.5 8.5 0 0 0-.285.086L7.744.955a.348.348 0 0 0-.545.226l-.19 1.167a9.4 9.4 0 0 0-.262.14l-1.076-.49a.346.346 0 0 0-.49.328l.041 1.185a8 8 0 0 0-.228.187l-1.153-.273a.347.347 0 0 0-.417.418l.271 1.153a8 8 0 0 0-.186.226l-1.185-.041a.346.346 0 0 0-.328.49l.491 1.076a9.2 9.2 0 0 0-.141.262l-1.166.189a.348.348 0 0 0-.226.545l.691.959a13.3 13.3 0 0 0-.087.285l-1.107.414a.348.348 0 0 0-.115.578l.866.807a9.3 9.3 0 0 0-.029.294l-1.007.623a.344.344 0 0 0 0 .589l1.007.624c.009.098.019.196.029.293l-.866.808a.346.346 0 0 0 .115.578l1.107.414c.027.096.057.191.087.285l-.691.959a.345.345 0 0 0 .227.544l1.166.19c.045.088.092.175.141.262l-.491 1.076a.346.346 0 0 0 .328.49l1.183-.042c.062.077.124.153.187.228l-.271 1.154a.346.346 0 0 0 .417.416l1.153-.271c.075.064.151.125.228.186l-.041 1.185a.344.344 0 0 0 .49.327l1.076-.49c.087.049.174.095.262.141l.19 1.166a.348.348 0 0 0 .545.227l.959-.69c.094.03.189.059.285.087l.414 1.106a.345.345 0 0 0 .578.115l.808-.866c.097.011.195.021.294.03l.623 1.007a.347.347 0 0 0 .589 0l.624-1.007c.098-.009.196-.019.293-.03l.807.866a.348.348 0 0 0 .578-.115l.414-1.106c.096-.028.191-.057.286-.087l.958.69a.345.345 0 0 0 .545-.227l.19-1.166c.088-.046.175-.093.262-.141l1.076.49a.347.347 0 0 0 .49-.327l-.041-1.185c.076-.061.152-.122.226-.186l1.153.271a.347.347 0 0 0 .417-.416l-.271-1.154c.063-.075.125-.151.186-.228l1.185.042a.344.344 0 0 0 .328-.49l-.49-1.076c.047-.087.095-.174.14-.262l1.167-.19a.348.348 0 0 0 .226-.544l-.691-.959.087-.285 1.106-.414a.346.346 0 0 0 .116-.578l-.866-.808c.01-.097.02-.195.028-.293l1.008-.624a.344.344 0 0 0 0-.589zm-6.742 8.355a.714.714 0 0 1 .299-1.396.714.714 0 1 1-.3 1.396zm-.342-2.314a.649.649 0 0 0-.772.5l-.357 1.669a8.74 8.74 0 0 1-7.014-.035l-.358-1.668a.648.648 0 0 0-.771-.499l-1.473.316a8.7 8.7 0 0 1-.761-.898h7.168c.08 0 .135-.014.135-.088v-2.536c0-.074-.053-.088-.135-.088h-2.097v-1.608h2.268c.206 0 1.106.059 1.394 1.209.09.353.287 1.504.423 1.873.135.413.683 1.238 1.269 1.238h3.571a.75.75 0 0 0 .13-.013 8.8 8.8 0 0 1-.812.953zM6.837 20.024a.714.714 0 1 1-.3-1.396.714.714 0 0 1 .3 1.396zM4.118 8.997a.714.714 0 1 1-1.304.58.714.714 0 0 1 1.304-.58zm-.836 1.982l1.535-.683a.65.65 0 0 0 .33-.858l-.316-.715h1.244v5.603H3.567a8.8 8.8 0 0 1-.285-3.347zm6.735-.544V8.784h2.96c.153 0 1.079.177 1.079.87 0 .575-.711.781-1.295.781zm10.757 1.486c0 .219-.008.436-.024.651h-.9c-.09 0-.127.059-.127.148v.413c0 .973-.548 1.184-1.029 1.238-.458.052-.965-.191-1.028-.472-.27-1.518-.72-1.843-1.43-2.403.881-.56 1.799-1.386 1.799-2.492 0-1.193-.819-1.945-1.377-2.315-.783-.516-1.65-.619-1.883-.619H5.468a8.77 8.77 0 0 1 4.907-2.77l1.098 1.151a.648.648 0 0 0 .918.022l1.227-1.175a8.78 8.78 0 0 1 6.004 4.277l-.84 1.898a.652.652 0 0 0 .33.858l1.618.72c.028.287.042.577.042.87zm-9.3-9.6a.713.713 0 1 1 .983 1.032.714.714 0 0 1-.984-1.032zm8.338 6.71a.711.711 0 0 1 .94-.362.714.714 0 1 1-.94.364z"></path>
+          `,
+        },
+      };
+
+      function createCourseIcon(course) {
+        const logo = courseIcons[course] || {
+          viewBox: "0 0 24 24",
+          markup: '<path fill="none" stroke="currentColor" d="m8 7-5 5 5 5m8-10 5 5-5 5"></path>',
+        };
+        const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        icon.classList.add("button-icon", "course-icon");
+        icon.setAttribute("viewBox", logo.viewBox);
+        icon.setAttribute("aria-hidden", "true");
+        icon.setAttribute("focusable", "false");
+        icon.innerHTML = logo.markup;
+        return icon;
+      }
+
+      function resultPreferenceCompare(a, b) {
+        return (
+          Number(a.score) - Number(b.score) ||
+          Number(b.tasks_passed || 0) - Number(a.tasks_passed || 0) ||
+          Number(b.tests_passed || 0) - Number(a.tests_passed || 0) ||
+          Number(a.raw_bytes || 0) - Number(b.raw_bytes || 0) ||
+          String(a.variant || a.run || "").localeCompare(String(b.variant || b.run || ""))
+        );
+      }
+
+      function bestResultPerModelCourse(items) {
+        const best = new Map();
+        for (const result of items) {
+          const key = `${modelKey(result)}\u0000${courseKey(result)}`;
+          const current = best.get(key);
+          if (!current || resultPreferenceCompare(result, current) < 0) best.set(key, result);
+        }
+        return [...best.values()];
+      }
+
+      const results = bestResultPerModelCourse(rawResults);
+      const courses = [...new Set(results.map(courseKey))].sort();
+      let selectedCourses = selectedCoursesFromUrl();
+      const testSets = [...new Set(results.map((result) => result.test_set).filter(Boolean))];
+      document.querySelector("#test-set-label").textContent = testSets.includes("all")
+        ? "Scores include public and private tests."
+        : "Scores use private tests.";
+
+      function selectedCoursesFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        if (!params.has("courses")) return new Set(courses);
+
+        const requested = new Set(params.get("courses").split(",").filter(Boolean));
+        const selected = courses.filter((course) => requested.has(course));
+        return new Set(selected.length ? selected : courses);
+      }
+
+      function selectedCourseList() {
+        return courses.filter((course) => selectedCourses.has(course));
+      }
+
+      function updateCoursesUrl() {
+        const url = new URL(window.location.href);
+        if (selectedCourses.size === courses.length) {
+          url.searchParams.delete("courses");
+        } else {
+          url.searchParams.set("courses", selectedCourseList().join(","));
+        }
+        window.history.replaceState(null, "", url.href);
+        updateScatterLink();
+      }
+
+      function updateScatterLink() {
+        const selected = selectedCourseList();
+        scatterLink.href = selected.length === courses.length
+          ? "scatter.html"
+          : `scatter.html?courses=${encodeURIComponent(selected.join(","))}`;
+      }
+
+      function rankedCourseResults(course) {
+        return results
+          .filter((result) => courseKey(result) === course)
+          .sort(resultPreferenceCompare)
+          .map((result, index) => ({ ...result, rank: index + 1 }));
+      }
+
+      const courseRanks = new Map();
+      for (const course of courses) {
+        courseRanks.set(
+          course,
+          new Map(rankedCourseResults(course).map((result) => [modelKey(result), result.rank])),
+        );
+      }
+
+      function buildCombinedRows() {
+        const includedCourses = selectedCourseList();
+        const byModel = new Map();
+        for (const result of results) {
+          if (!selectedCourses.has(courseKey(result))) continue;
+          const key = modelKey(result);
+          if (!byModel.has(key)) {
+            byModel.set(key, {
+              model_key: key,
+              model: result.model || result.variant || result.run,
+              results_by_course: new Map(),
+              model_metadata: result.model_metadata || {},
+            });
+          }
+          byModel.get(key).results_by_course.set(courseKey(result), result);
+        }
+
+        const models = [...byModel.values()].map((model) => {
+          const courseResults = [...model.results_by_course.values()];
+          const complete = includedCourses.every((course) => model.results_by_course.has(course));
+          const availableScore = courseResults.reduce((total, result) => total + Number(result.score || 0), 0);
+          const rawBytes = courseResults.reduce((total, result) => total + rawByteCount(result), 0);
+          const costs = courseResults.map(apiCost);
+          const totalApiCost = costs.every((cost) => cost !== null)
+            ? costs.reduce((total, cost) => total + cost, 0)
+            : null;
+          const totalHoles = courseResults.reduce((total, result) => total + Number(result.tasks_total || 0), 0);
+          return {
+            ...model,
+            complete,
+            courses_completed: courseResults.length,
+            total_score: complete ? availableScore : Number.POSITIVE_INFINITY,
+            available_score: availableScore,
+            raw_bytes: rawBytes,
+            api_cost: totalApiCost,
+            tasks_total: totalHoles,
+            penalty_points: courseResults.reduce((total, result) => total + penaltyPoints(result), 0),
+          };
+        });
+
+        models.sort((a, b) => (
+          a.total_score - b.total_score ||
+          b.courses_completed - a.courses_completed ||
+          a.available_score - b.available_score ||
+          String(a.model).localeCompare(String(b.model))
+        ));
+        return models.map((model, index) => ({ ...model, rank: index + 1 }));
+      }
+
+      function valueForSort(item, key) {
+        if (key === "model") return item.model || item.variant || item.model_key;
+        if (key === "total_score") return item.total_score;
+        if (key === "cost_per_hole") return costPerHole(item) ?? Number.POSITIVE_INFINITY;
+        if (key === "penalty_points") return penaltyPoints(item);
+        if (key.startsWith("course:")) {
+          return courseRanks.get(key.slice(7))?.get(item.model_key || modelKey(item)) ?? Number.POSITIVE_INFINITY;
+        }
+        return item[key] ?? "";
+      }
+
+      function compareValues(a, b, key) {
+        const av = valueForSort(a, key);
+        const bv = valueForSort(b, key);
+        if (typeof av === "number" && typeof bv === "number") return av - bv;
+        return String(av).localeCompare(String(bv));
+      }
+
+      function markSortHeader() {
+        for (const header of document.querySelectorAll("th.sortable")) {
+          header.classList.toggle("sort-asc", header.dataset.key === sortState.key && sortState.direction === "asc");
+          header.classList.toggle("sort-desc", header.dataset.key === sortState.key && sortState.direction === "desc");
+        }
+      }
+
+      function bindSortHeaders() {
+        for (const header of document.querySelectorAll("th.sortable")) {
+          header.addEventListener("click", () => {
+            const key = header.dataset.key;
+            sortState = {
+              key,
+              direction: sortState.key === key && sortState.direction === "asc" ? "desc" : "asc",
+            };
+            const items =
+              activeView === ALL_COURSES ? buildCombinedRows() : rankedCourseResults(activeView);
+            if (activeView === ALL_COURSES) {
+              renderCombinedRows(items);
+            } else {
+              renderCourseRows(items);
+            }
+            markSortHeader();
+          });
+        }
+      }
+
+      function renderTabs() {
+        tabs.textContent = "";
+        const totalButton = document.createElement("button");
+        totalButton.className = "tab";
+        totalButton.type = "button";
+        totalButton.textContent = `Total (${selectedCourses.size}/${courses.length})`;
+        totalButton.setAttribute("aria-selected", String(activeView === ALL_COURSES));
+        totalButton.addEventListener("click", () => {
+          activeView = ALL_COURSES;
+          sortState = { key: "rank", direction: "asc" };
+          renderTabs();
+          renderTable();
+        });
+        tabs.appendChild(totalButton);
+
+        for (const course of courses) {
+          const control = document.createElement("div");
+          control.className = "course-tab";
+          control.classList.toggle("is-counted", selectedCourses.has(course));
+
+          const viewButton = document.createElement("button");
+          viewButton.className = "tab course-view-tab";
+          viewButton.type = "button";
+          viewButton.appendChild(createCourseIcon(course));
+          viewButton.appendChild(document.createTextNode(courseLabel(course)));
+          viewButton.setAttribute("aria-selected", String(course === activeView));
+          viewButton.addEventListener("click", () => {
+            activeView = course;
+            sortState = { key: "rank", direction: "asc" };
+            renderTabs();
+            renderTable();
+          });
+          control.appendChild(viewButton);
+
+          const toggleLabel = document.createElement("label");
+          toggleLabel.className = "course-toggle";
+          const toggle = document.createElement("input");
+          toggle.className = "course-checkbox";
+          toggle.type = "checkbox";
+          toggle.checked = selectedCourses.has(course);
+          toggle.disabled = toggle.checked && selectedCourses.size === 1;
+          toggleLabel.classList.toggle("is-disabled", toggle.disabled);
+          toggle.setAttribute("aria-label", `Include ${courseLabel(course)} in total`);
+          toggleLabel.title = toggle.disabled ? "At least one course must be included" : `Include ${courseLabel(course)} in total`;
+          toggle.addEventListener("change", () => {
+            if (toggle.checked) {
+              selectedCourses.add(course);
+            } else {
+              selectedCourses.delete(course);
+            }
+            if (sortState.key === `course:${course}` && !toggle.checked) {
+              sortState = { key: "rank", direction: "asc" };
+            }
+            updateCoursesUrl();
+            renderTabs();
+            renderTable();
+          });
+          toggleLabel.appendChild(toggle);
+          const toggleMark = document.createElement("span");
+          toggleMark.className = "course-toggle-mark";
+          toggleMark.setAttribute("aria-hidden", "true");
+          toggleMark.textContent = "\u2713";
+          toggleLabel.appendChild(toggleMark);
+          control.appendChild(toggleLabel);
+          tabs.appendChild(control);
+        }
+      }
+
+      function renderCombinedHeader() {
+        const includedCourses = selectedCourseList();
+        head.innerHTML = `
+          <tr>
+            <th class="sortable number" data-key="rank">Rank</th>
+            <th class="sortable" data-key="model">Model</th>
+            <th class="sortable number" data-key="total_score">Total Score ↓</th>
+            ${includedCourses.map((course) => `<th class="sortable number" data-key="course:${escapeHtml(course)}">${escapeHtml(courseLabel(course))} Rank</th>`).join("")}
+            <th class="sortable number" data-key="cost_per_hole" title="API cost per hole in USD.">Cost/Hole</th>
+          </tr>
+        `;
+        bindSortHeaders();
+      }
+
+      function renderCourseHeader() {
+        head.innerHTML = `
+          <tr>
+            <th class="sortable number" data-key="rank">Rank</th>
+            <th class="sortable" data-key="model">Model</th>
+            <th class="sortable number" data-key="score">Score ↓</th>
+            <th class="sortable number" data-key="raw_bytes">Raw Bytes</th>
+            <th class="sortable number" data-key="penalty_points" title="Score minus raw bytes.">Penalty</th>
+            <th class="sortable number" data-key="correctness" title="Tests passed divided by total tests in the selected scoring set.">Correctness</th>
+            <th class="sortable number" data-key="tasks_passed" title="Holes where every test passed. This is different from test-level correctness.">Holes Passed</th>
+            <th class="sortable number" data-key="cost_per_hole" title="API cost per hole in USD.">Cost/Hole</th>
+          </tr>
+        `;
+        bindSortHeaders();
+      }
+
+      function updateSummary(items) {
+        if (activeView === ALL_COURSES) {
+          const complete = items.filter((item) => item.complete);
+          const includedCourses = selectedCourseList();
+          const holeCount = includedCourses.reduce((total, course) => {
+            const first = results.find((result) => courseKey(result) === course);
+            return total + Number(first?.tasks_total || 0);
+          }, 0);
+          document.querySelector("#models").textContent = items.length;
+          document.querySelector("#best-score").textContent = complete.length ? fmtScore(complete[0].total_score) : "-";
+          document.querySelector("#course-label").textContent = "Courses";
+          document.querySelector("#course").textContent = includedCourses.length;
+          document.querySelector("#holes").textContent = holeCount || "-";
+        } else {
+          document.querySelector("#models").textContent = items.length;
+          document.querySelector("#best-score").textContent = items.length ? fmtScore(items[0].score) : "-";
+          document.querySelector("#course-label").textContent = "Course";
+          document.querySelector("#course").textContent = courseLabel(activeView);
+          document.querySelector("#holes").textContent = items.length ? items[0].tasks_total : "-";
+        }
+      }
+
+      function renderCombinedRows(items) {
+        rows.textContent = "";
+        const includedCourses = selectedCourseList();
+        const sorted = [...items].sort((a, b) => {
+          const order = compareValues(a, b, sortState.key);
+          return sortState.direction === "asc" ? order : -order;
+        });
+
+        for (const model of sorted) {
+          const tr = document.createElement("tr");
+          const href = `model.html?model=${encodeURIComponent(model.model_key)}`;
+          tr.innerHTML = `
+            <td class="number rank">${model.rank}</td>
+            <td><a href="${href}">${escapeHtml(model.model || model.model_key)}</a></td>
+            <td class="number">${model.complete ? fmtScore(model.total_score) : "Incomplete"}</td>
+            ${includedCourses.map((course) => {
+              const rank = courseRanks.get(course)?.get(model.model_key);
+              return `<td class="number">${rank ? `#${rank}` : "-"}</td>`;
+            }).join("")}
+            <td class="number">${fmtCost(costPerHole(model))}</td>
+          `;
+          rows.appendChild(tr);
+        }
+      }
+
+      function renderCourseRows(items) {
+        rows.textContent = "";
+        const sorted = [...items].sort((a, b) => {
+          const order = compareValues(a, b, sortState.key);
+          return sortState.direction === "asc" ? order : -order;
+        });
+
+        for (const result of sorted) {
+          const key = modelKey(result);
+          const href = `model.html?model=${encodeURIComponent(key)}`;
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td class="number rank">${result.rank}</td>
+            <td><a href="${href}">${escapeHtml(result.model || result.variant || result.run)}</a></td>
+            <td class="number">${fmtScore(result.score)}</td>
+            <td class="number">${result.raw_bytes}</td>
+            <td class="number">${fmtScore(penaltyPoints(result))}</td>
+            <td class="number" title="Tests passed / total tests: ${testFraction(result)}">${correctnessCell(result)}</td>
+            <td class="number passed" title="Fully passed holes / total holes">${result.tasks_passed}/${result.tasks_total}</td>
+            <td class="number">${fmtCost(costPerHole(result))}</td>
+          `;
+          rows.appendChild(tr);
+        }
+      }
+
+      function renderTable() {
+        const items = activeView === ALL_COURSES ? buildCombinedRows() : rankedCourseResults(activeView);
+        if (activeView === ALL_COURSES) {
+          renderCombinedHeader();
+          renderCombinedRows(items);
+        } else {
+          renderCourseHeader();
+          renderCourseRows(items);
+        }
+        updateSummary(items);
+        markSortHeader();
+      }
+
+      renderTabs();
+      updateScatterLink();
+      renderTable();
+    </script>
+  </body>
+</html>

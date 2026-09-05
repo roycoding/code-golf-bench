@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Code Golf Model Results</title>
+    <link rel="icon" type="image/png" href="code_golf_bench_background1.png">
+    <script src="results.js"></script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #102017;
+        --panel: #fff8d8;
+        --panel-2: #e9f7b9;
+        --text: #1b2a20;
+        --muted: #47614d;
+        --line: #243f2c;
+        --ink: #08150d;
+        --link: #075f48;
+        --good: #116530;
+        --bad: #991b1b;
+        --gold: #ffd24a;
+        --shadow: rgba(2, 10, 5, 0.42);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          linear-gradient(rgba(9, 21, 13, 0.08), rgba(9, 21, 13, 0.82)),
+          url("code_golf_bench_background1.png") center top / cover fixed,
+          var(--bg);
+        color: var(--text);
+        font: 14px/1.45 "Courier New", ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      main {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 28px 20px 40px;
+      }
+
+      header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        min-height: 260px;
+        margin-bottom: 18px;
+        color: #fffbe6;
+        text-shadow: 0 3px 0 #0a1b10, 0 0 12px rgba(0, 0, 0, 0.6);
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 760px;
+        font-size: clamp(34px, 6vw, 64px);
+        line-height: 0.95;
+        font-weight: 900;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .subhead,
+      .metadata {
+        margin: 6px 0 0;
+        color: #f8edb2;
+        font-weight: 700;
+      }
+
+      .view-context {
+        display: inline-block;
+        margin: 12px 0 0;
+        border: 3px solid #fffbe6;
+        background: var(--gold);
+        color: var(--ink);
+        box-shadow: 4px 4px 0 rgba(2, 10, 5, 0.55);
+        padding: 6px 10px;
+        text-shadow: none;
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .top-link {
+        display: inline-block;
+        border: 3px solid #fffbe6;
+        background: rgba(8, 21, 13, 0.72);
+        color: #fffbe6;
+        padding: 10px 12px;
+        box-shadow: 4px 4px 0 rgba(2, 10, 5, 0.55);
+        text-shadow: none;
+        text-transform: uppercase;
+      }
+
+      a {
+        color: var(--link);
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      a:hover {
+        background: var(--gold);
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .top-link:hover {
+        background: var(--gold);
+        color: var(--ink);
+        text-shadow: none;
+      }
+
+      .summary {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .metric {
+        background: var(--panel);
+        border: 3px solid var(--ink);
+        border-radius: 0;
+        box-shadow: 5px 5px 0 var(--shadow);
+        padding: 14px;
+      }
+
+      .metric span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      .metric strong {
+        display: block;
+        margin-top: 4px;
+        font-size: 24px;
+        color: var(--ink);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--panel);
+        border: 3px solid var(--ink);
+        border-radius: 0;
+        box-shadow: 5px 5px 0 var(--shadow);
+        overflow: hidden;
+      }
+
+      th,
+      td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+
+      th {
+        background: var(--line);
+        color: #fff7c2;
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      th.sortable {
+        cursor: pointer;
+        user-select: none;
+      }
+
+      th.sortable::after {
+        content: " <> ";
+        color: var(--gold);
+      }
+
+      th.sort-asc::after {
+        content: " ^ ";
+      }
+
+      th.sort-desc::after {
+        content: " v ";
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      td.number,
+      th.number {
+        text-align: right;
+      }
+
+      .status {
+        font-weight: 650;
+      }
+
+      .passed {
+        color: var(--good);
+      }
+
+      .failed {
+        color: var(--bad);
+      }
+
+      .failed-bytes {
+        color: var(--bad);
+        text-decoration: line-through;
+        text-decoration-thickness: 2px;
+      }
+
+      .pill {
+        display: inline-block;
+        min-width: 48px;
+        border: 2px solid var(--ink);
+        border-radius: 0;
+        padding: 2px 8px;
+        text-align: center;
+        color: var(--ink);
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .difficulty-easy {
+        background: #9df29f;
+      }
+
+      .difficulty-medium {
+        background: #ffd24a;
+      }
+
+      .difficulty-hard {
+        background: #ff8b5f;
+      }
+
+      code {
+        color: var(--muted);
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        padding: 0 5px 5px 0;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @media (max-width: 760px) {
+        body {
+          background-attachment: scroll;
+        }
+
+        header {
+          display: block;
+          min-height: 220px;
+          padding-top: 100px;
+        }
+
+        .summary {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1 id="model">Model Results</h1>
+          <p class="subhead" id="subhead">Lower score is better.</p>
+          <p class="view-context" id="view-context"></p>
+          <p class="metadata" id="metadata"></p>
+        </div>
+        <a class="top-link" href="index.html">Back to Leaderboard</a>
+      </header>
+
+      <section class="summary" aria-label="Aggregate results">
+        <div class="metric"><span>Score ↓</span><strong id="score">-</strong></div>
+        <div class="metric"><span>Raw Bytes</span><strong id="bytes">-</strong></div>
+        <div class="metric"><span title="Score minus raw bytes.">Penalty</span><strong id="penalty">-</strong></div>
+        <div class="metric"><span title="Tests passed divided by total tests in the selected scoring set.">Correctness</span><strong id="correctness">-</strong></div>
+        <div class="metric"><span title="Holes where every test passed. This is different from test-level correctness.">Holes Passed</span><strong id="holes">-</strong></div>
+      </section>
+
+      <div class="table-wrap" id="course-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="sortable course-sort" data-key="course">Course</th>
+              <th class="sortable number course-sort" data-key="rank">Rank</th>
+              <th class="sortable number course-sort" data-key="score">Score ↓</th>
+              <th class="sortable number course-sort" data-key="raw_bytes">Raw Bytes</th>
+              <th class="sortable number course-sort" data-key="penalty_points" title="Score minus raw bytes.">Penalty</th>
+              <th class="sortable number course-sort" data-key="correctness" title="Tests passed divided by total tests in the selected scoring set.">Correctness</th>
+              <th class="sortable number course-sort" data-key="tasks_passed" title="Holes where every test passed. This is different from test-level correctness.">Holes Passed</th>
+              <th class="sortable number course-sort" data-key="api_cost" title="Total API cost for this course in USD.">API Cost</th>
+              <th class="sortable number course-sort" data-key="cost_per_hole" title="Average API cost per hole in USD.">Cost/Hole</th>
+            </tr>
+          </thead>
+          <tbody id="course-rows"></tbody>
+        </table>
+      </div>
+
+      <div class="table-wrap hidden" id="hole-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="sortable hole-sort number" data-key="hole">Hole</th>
+              <th class="sortable hole-sort" data-key="task">Task</th>
+              <th class="sortable hole-sort" data-key="difficulty">Difficulty</th>
+              <th class="sortable hole-sort number" data-key="score">Score ↓</th>
+              <th class="sortable hole-sort number" data-key="bytes">Raw Bytes</th>
+              <th class="sortable hole-sort number" data-key="penalty_points" title="Score minus raw bytes.">Penalty</th>
+              <th class="sortable hole-sort number" data-key="tests_passed">Tests</th>
+              <th>Status</th>
+              <th>Failure Reason</th>
+              <th class="sortable hole-sort number" data-key="api_cost" title="API cost for generating this hole in USD.">Cost</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </main>
+
+    <script>
+      const rawResults = window.CODEGOLF_RESULTS || [];
+      const params = new URLSearchParams(window.location.search);
+      const requestedModel = params.get("model");
+      const requestedCourse = params.get("course");
+      const requestedVariant = params.get("variant");
+      const rows = document.querySelector("#rows");
+      const courseRows = document.querySelector("#course-rows");
+      let holeSortState = { key: "hole", direction: "asc" };
+      let courseSortState = { key: "rank", direction: "asc" };
+
+      function fmtScore(value) {
+        return Math.round(Number(value)).toLocaleString();
+      }
+
+      function fmtCost(value) {
+        if (value === null || value === undefined || value === "") return "-";
+        const number = Number(value);
+        if (!Number.isFinite(number)) return "-";
+        return `$${number.toFixed(number < 0.01 ? 4 : 2)}`;
+      }
+
+      function pct(value) {
+        return `${Math.round(value * 100)}%`;
+      }
+
+      function testFraction(result) {
+        return `${result.tests_passed}/${result.tests_total}`;
+      }
+
+      function correctnessText(passed, total) {
+        return `${pct(passed / Math.max(total, 1))} (${passed}/${total})`;
+      }
+
+      function correctnessCell(result) {
+        return `${pct(result.correctness)} (${testFraction(result)})`;
+      }
+
+      function rawByteCount(result) {
+        return Number(result.raw_bytes ?? result.bytes ?? 0);
+      }
+
+      function penaltyPoints(result) {
+        const penalty = Number(result.penalty_points ?? (Number(result.score) - rawByteCount(result)));
+        return Number.isFinite(penalty) ? Math.max(0, penalty) : penalty;
+      }
+
+      function apiCost(result) {
+        const rawCost = result.api_cost ?? result.api_summary?.cost;
+        if (rawCost === null || rawCost === undefined || rawCost === "") return null;
+        const cost = Number(rawCost);
+        return Number.isFinite(cost) ? cost : null;
+      }
+
+      function costPerHole(result) {
+        const cost = apiCost(result);
+        const holes = Number(result.tasks_total);
+        return cost !== null && holes > 0 ? cost / holes : null;
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;");
+      }
+
+      function modelKey(result) {
+        return String(result.model_key || result.model || result.variant || result.run || "");
+      }
+
+      function courseKey(result) {
+        return String(result.course || "python");
+      }
+
+      function courseLabel(course) {
+        return course.replaceAll("-", " ").replace(/\b\w/g, (char) => char.toUpperCase());
+      }
+
+      function resultPreferenceCompare(a, b) {
+        return (
+          Number(a.score) - Number(b.score) ||
+          Number(b.tasks_passed || 0) - Number(a.tasks_passed || 0) ||
+          Number(b.tests_passed || 0) - Number(a.tests_passed || 0) ||
+          Number(a.raw_bytes || 0) - Number(b.raw_bytes || 0) ||
+          String(a.variant || a.run || "").localeCompare(String(b.variant || b.run || ""))
+        );
+      }
+
+      function bestResultPerModelCourse(items) {
+        const best = new Map();
+        for (const result of items) {
+          const key = `${modelKey(result)}\u0000${courseKey(result)}`;
+          const current = best.get(key);
+          if (!current || resultPreferenceCompare(result, current) < 0) best.set(key, result);
+        }
+        return [...best.values()];
+      }
+
+      const results = bestResultPerModelCourse(rawResults);
+      const courses = [...new Set(results.map(courseKey))].sort();
+      const courseRanks = new Map();
+      for (const course of courses) {
+        const ranked = results
+          .filter((result) => courseKey(result) === course)
+          .sort(resultPreferenceCompare)
+          .map((result, index) => ({ ...result, rank: index + 1 }));
+        courseRanks.set(course, new Map(ranked.map((result) => [modelKey(result), result.rank])));
+      }
+
+      const variantResult = requestedVariant ? results.find((item) => item.variant === requestedVariant) : null;
+      const selectedModelKey = requestedModel || (variantResult ? modelKey(variantResult) : modelKey(results[0] || {}));
+      const modelResults = results
+        .filter((item) => modelKey(item) === selectedModelKey)
+        .sort((a, b) => courseKey(a).localeCompare(courseKey(b)));
+      const selectedCourse = requestedCourse || (requestedVariant && variantResult ? courseKey(variantResult) : null);
+      const result = selectedCourse
+        ? modelResults.find((item) => courseKey(item) === selectedCourse)
+        : null;
+
+      function byteCell(item) {
+        if (item.passed) return item.official_bytes ?? item.bytes;
+        if (item.bytes === null || item.bytes === undefined) return "-";
+        return `<span class="failed-bytes">${item.bytes}</span>`;
+      }
+
+      function difficultyCell(item) {
+        const difficulty = item.difficulty || "";
+        return `<span class="pill difficulty-${difficulty}">${difficulty}</span>`;
+      }
+
+      function failureReason(item) {
+        if (item.passed) return "";
+        if (item.failure_reason !== undefined) return String(item.failure_reason || "");
+        if (item.bytes === 0 && item.error === "KeyError: 'f'") return "No submission";
+        const error = String(item.error || "");
+        if (error.match(/read-syntax|syntax/i)) return "Syntax error";
+        if (error.match(/timed out/i)) return "Timeout";
+        if (error.match(/KeyError: 'f'|not callable/i)) return "Missing function";
+        if (error) return "Runtime error";
+        const failureError = (item.failures || []).find((failure) => failure.error);
+        return failureError ? "Runtime error" : "Failed tests";
+      }
+
+      function fullFailureReason(item) {
+        if (item.passed) return "";
+        if (item.failure_detail !== undefined) return String(item.failure_detail || "");
+        if (item.failure_reason !== undefined) return String(item.failure_reason || "");
+        if (item.error) return item.error;
+        const failureError = (item.failures || []).find((failure) => failure.error);
+        return failureError ? failureError.error : "Failed tests";
+      }
+
+      function valueForSort(item, key) {
+        if (key === "bytes") return item.bytes ?? Number.POSITIVE_INFINITY;
+        if (key === "tests_passed") return item.tests_passed / Math.max(item.tests_total, 1);
+        if (key === "course") return courseLabel(courseKey(item));
+        if (key === "rank") return courseRanks.get(courseKey(item))?.get(modelKey(item)) ?? Number.POSITIVE_INFINITY;
+        if (key === "penalty_points") return penaltyPoints(item);
+        if (key === "cost_per_hole") return costPerHole(item) ?? Number.POSITIVE_INFINITY;
+        if (key === "api_cost") return apiCost(item) ?? Number.POSITIVE_INFINITY;
+        return item[key] ?? "";
+      }
+
+      function compareValues(a, b, key) {
+        const av = valueForSort(a, key);
+        const bv = valueForSort(b, key);
+        if (typeof av === "number" && typeof bv === "number") return av - bv;
+        return String(av).localeCompare(String(bv));
+      }
+
+      function renderRows(items) {
+        rows.textContent = "";
+        const sorted = [...items].sort((a, b) => {
+          const order = compareValues(a, b, holeSortState.key);
+          return holeSortState.direction === "asc" ? order : -order;
+        });
+
+        for (const item of sorted) {
+          const tr = document.createElement("tr");
+          const status = item.passed ? "passed" : "failed";
+          const reason = failureReason(item);
+          const fullReason = fullFailureReason(item);
+          tr.innerHTML = `
+            <td class="number">${item.hole ?? ""}</td>
+            <td><code>${item.task}</code></td>
+            <td>${difficultyCell(item)}</td>
+            <td class="number">${fmtScore(item.score)}</td>
+            <td class="number">${byteCell(item)}</td>
+            <td class="number">${fmtScore(penaltyPoints(item))}</td>
+            <td class="number">${item.tests_passed}/${item.tests_total}</td>
+            <td class="status ${status}">${item.passed ? "Passed" : "Failed"}</td>
+            <td title="${escapeHtml(fullReason)}">${escapeHtml(reason)}</td>
+            <td class="number">${fmtCost(apiCost(item))}</td>
+          `;
+          rows.appendChild(tr);
+        }
+      }
+
+      function markSortHeader() {
+        for (const header of document.querySelectorAll("th.sortable")) {
+          const state = header.classList.contains("course-sort") ? courseSortState : holeSortState;
+          header.classList.toggle("sort-asc", header.dataset.key === state.key && state.direction === "asc");
+          header.classList.toggle("sort-desc", header.dataset.key === state.key && state.direction === "desc");
+        }
+      }
+
+      function renderCourseOverview(items) {
+        document.querySelector("#course-wrap").classList.remove("hidden");
+        document.querySelector("#hole-wrap").classList.add("hidden");
+        courseRows.textContent = "";
+        const sorted = [...items].sort((a, b) => {
+          const order = compareValues(a, b, courseSortState.key);
+          return courseSortState.direction === "asc" ? order : -order;
+        });
+
+        for (const item of sorted) {
+          const course = courseKey(item);
+          const rank = courseRanks.get(course)?.get(modelKey(item));
+          const href = `model.html?model=${encodeURIComponent(selectedModelKey)}&course=${encodeURIComponent(course)}`;
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td><a href="${href}">${escapeHtml(courseLabel(course))}</a></td>
+            <td class="number">${rank ? `#${rank}` : "-"}</td>
+            <td class="number">${fmtScore(item.score)}</td>
+            <td class="number">${item.raw_bytes}</td>
+            <td class="number">${fmtScore(penaltyPoints(item))}</td>
+            <td class="number" title="Tests passed / total tests: ${testFraction(item)}">${correctnessCell(item)}</td>
+            <td class="number passed" title="Fully passed holes / total holes">${item.tasks_passed}/${item.tasks_total}</td>
+            <td class="number">${fmtCost(apiCost(item))}</td>
+            <td class="number">${fmtCost(costPerHole(item))}</td>
+          `;
+          courseRows.appendChild(tr);
+        }
+      }
+
+      function renderCourseDetail(item) {
+        document.querySelector("#course-wrap").classList.add("hidden");
+        document.querySelector("#hole-wrap").classList.remove("hidden");
+        renderRows(item.results);
+      }
+
+      if (modelResults.length) {
+        const summarySource = result || modelResults[0];
+        const metadata = summarySource.model_metadata || {};
+        const totalScore = modelResults.reduce((total, item) => total + Number(item.score || 0), 0);
+        const totalTestsPassed = modelResults.reduce((total, item) => total + Number(item.tests_passed || 0), 0);
+        const totalTests = modelResults.reduce((total, item) => total + Number(item.tests_total || 0), 0);
+        const totalTasksPassed = modelResults.reduce((total, item) => total + Number(item.tasks_passed || 0), 0);
+        const totalTasks = modelResults.reduce((total, item) => total + Number(item.tasks_total || 0), 0);
+        const totalBytes = modelResults.reduce((total, item) => total + Number(item.raw_bytes || 0), 0);
+        const totalPenalty = modelResults.reduce((total, item) => total + penaltyPoints(item), 0);
+        const metaParts = [
+          metadata.provider,
+          metadata.model_id,
+          metadata.reasoning_effort ? `reasoning: ${metadata.reasoning_effort}` : null,
+          selectedCourse ? `course: ${courseLabel(selectedCourse)}` : null,
+          selectedCourse && result ? `run variant: ${result.variant}` : null,
+          selectedCourse && result ? `language: ${result.language}` : null,
+          `tests: ${summarySource.test_set}`,
+        ].filter(Boolean);
+
+        document.querySelector("#model").textContent = summarySource.model || summarySource.variant;
+        document.querySelector("#subhead").textContent =
+          selectedCourse && result
+            ? "Hole-by-hole course results. Lower score is better."
+            : "Course-level model results. Lower score is better.";
+        document.querySelector("#view-context").textContent =
+          selectedCourse && result ? `${courseLabel(selectedCourse)} Course` : "Course Summary";
+        document.querySelector("#metadata").textContent = metaParts.join(" | ");
+        document.querySelector("#score").textContent = selectedCourse && result ? fmtScore(result.score) : fmtScore(totalScore);
+        document.querySelector("#penalty").textContent = selectedCourse && result ? fmtScore(penaltyPoints(result)) : fmtScore(totalPenalty);
+        document.querySelector("#correctness").textContent =
+          selectedCourse && result
+            ? correctnessCell(result)
+            : correctnessText(totalTestsPassed, totalTests);
+        document.querySelector("#correctness").title = "Tests passed divided by total tests.";
+        document.querySelector("#holes").textContent = selectedCourse && result ? `${result.tasks_passed}/${result.tasks_total}` : `${totalTasksPassed}/${totalTasks}`;
+        document.querySelector("#holes").title = "Fully passed holes divided by total holes.";
+        document.querySelector("#bytes").textContent = selectedCourse && result ? result.raw_bytes : totalBytes;
+        if (selectedCourse && result) {
+          renderCourseDetail(result);
+        } else {
+          renderCourseOverview(modelResults);
+        }
+        markSortHeader();
+      }
+
+      for (const header of document.querySelectorAll("th.sortable")) {
+        header.addEventListener("click", () => {
+          const key = header.dataset.key;
+          if (header.classList.contains("course-sort")) {
+            courseSortState = {
+              key,
+              direction: courseSortState.key === key && courseSortState.direction === "asc" ? "desc" : "asc",
+            };
+            renderCourseOverview(modelResults);
+          } else {
+            holeSortState = {
+              key,
+              direction: holeSortState.key === key && holeSortState.direction === "asc" ? "desc" : "asc",
+            };
+            if (result) renderCourseDetail(result);
+          }
+          markSortHeader();
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -9,6 +9,7 @@ window.CODEGOLF_RESULTS = [
     "model": "x-ai/grok-4.7",
     "model_key": "x-ai/grok-4.7",
     "model_metadata": {
+      "evaluation_date": "2026-09-22",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -267,6 +268,7 @@ window.CODEGOLF_RESULTS = [
     "model": "x-ai/grok-4.5",
     "model_key": "x-ai/grok-4.5",
     "model_metadata": {
+      "evaluation_date": "2026-08-04",
       "provider": "OpenRouter",
       "reasoning_effort": "low"
     },
@@ -525,6 +527,7 @@ window.CODEGOLF_RESULTS = [
     "model": "unbiased/pareto",
     "model_key": "unbiased/pareto",
     "model_metadata": {
+      "evaluation_date": "2026-09-17",
       "provider": "OpenRouter"
     },
     "penalty_points": 0.0,
@@ -782,6 +785,7 @@ window.CODEGOLF_RESULTS = [
     "model": "x-ai/grok-4.6",
     "model_key": "x-ai/grok-4.6",
     "model_metadata": {
+      "evaluation_date": "2026-09-01",
       "provider": "OpenRouter",
       "reasoning_effort": "low"
     },
@@ -1040,6 +1044,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.8-flash",
     "model_key": "google/gemini-3.8-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -1298,6 +1303,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.1-pro-preview",
     "model_key": "google/gemini-3.1-pro-preview",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -1556,6 +1562,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-fable-5",
     "model_key": "anthropic/claude-fable-5",
     "model_metadata": {
+      "evaluation_date": "2026-06-11",
       "provider": "OpenRouter"
     },
     "penalty_points": 55.555556,
@@ -1815,6 +1822,7 @@ window.CODEGOLF_RESULTS = [
     "model": "meta/muse-wonder",
     "model_key": "meta/muse-wonder",
     "model_metadata": {
+      "evaluation_date": "2026-10-14",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -2073,6 +2081,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6.1-sol",
     "model_key": "openai/gpt-6.1-sol",
     "model_metadata": {
+      "evaluation_date": "2026-09-30",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -2323,6 +2332,524 @@ window.CODEGOLF_RESULTS = [
   },
   {
     "api_calls": 54,
+    "api_cost": 0.053523,
+    "api_elapsed_seconds": 175.959,
+    "correctness": 1.0,
+    "course": "python",
+    "language": "python",
+    "model": "openai/gpt-6.1-terra",
+    "model_key": "openai/gpt-6.1-terra",
+    "model_metadata": {
+      "evaluation_date": "2026-10-26",
+      "provider": "OpenRouter",
+      "reasoning_effort": "minimal"
+    },
+    "penalty_points": 0.0,
+    "raw_bytes": 1173,
+    "results": [
+      {
+        "api_cost": 0.00084,
+        "bytes": 19,
+        "difficulty": "easy",
+        "hole": 1,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 19,
+        "score": 19.0,
+        "task": "reverse-string",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.000903,
+        "bytes": 32,
+        "difficulty": "easy",
+        "hole": 2,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 32,
+        "score": 32.0,
+        "task": "sum-digits",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.001744,
+        "bytes": 37,
+        "difficulty": "easy",
+        "hole": 3,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 37,
+        "score": 37.0,
+        "task": "count-vowels",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.000894,
+        "bytes": 22,
+        "difficulty": "easy",
+        "hole": 4,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 22,
+        "score": 22.0,
+        "task": "palindrome",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.001392,
+        "bytes": 72,
+        "difficulty": "medium",
+        "hole": 5,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 72,
+        "score": 72.0,
+        "task": "fizzbuzz-list",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.001322,
+        "bytes": 21,
+        "difficulty": "medium",
+        "hole": 6,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 21,
+        "score": 21.0,
+        "task": "flatten",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.000927,
+        "bytes": 29,
+        "difficulty": "medium",
+        "hole": 7,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 29,
+        "score": 29.0,
+        "task": "sort-abs",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.004718,
+        "bytes": 56,
+        "difficulty": "medium",
+        "hole": 8,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 56,
+        "score": 56.0,
+        "task": "unique-preserve",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.001826,
+        "bytes": 57,
+        "difficulty": "medium",
+        "hole": 9,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 57,
+        "score": 57.0,
+        "task": "caesar-lower",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.002984,
+        "bytes": 88,
+        "difficulty": "hard",
+        "hole": 10,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 88,
+        "score": 88.0,
+        "task": "run-length-encode",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.004705,
+        "bytes": 80,
+        "difficulty": "hard",
+        "hole": 11,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 80,
+        "score": 80.0,
+        "task": "balanced-brackets",
+        "tests_passed": 7,
+        "tests_total": 7
+      },
+      {
+        "api_cost": 0.003954,
+        "bytes": 40,
+        "difficulty": "hard",
+        "hole": 12,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 40,
+        "score": 40.0,
+        "task": "nested-sum",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.00376,
+        "bytes": 48,
+        "difficulty": "hard",
+        "hole": 13,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 48,
+        "score": 48.0,
+        "task": "spiral-order",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.005395,
+        "bytes": 110,
+        "difficulty": "hard",
+        "hole": 14,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 110,
+        "score": 110.0,
+        "task": "roman-to-int",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.003429,
+        "bytes": 114,
+        "difficulty": "hard",
+        "hole": 15,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 114,
+        "score": 114.0,
+        "task": "merge-intervals",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.004508,
+        "bytes": 106,
+        "difficulty": "hard",
+        "hole": 16,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 106,
+        "score": 106.0,
+        "task": "eval-rpn",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.005354,
+        "bytes": 105,
+        "difficulty": "hard",
+        "hole": 17,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 105,
+        "score": 105.0,
+        "task": "anagram-groups",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.004868,
+        "bytes": 137,
+        "difficulty": "hard",
+        "hole": 18,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 137,
+        "score": 137.0,
+        "task": "levenshtein",
+        "tests_passed": 6,
+        "tests_total": 6
+      }
+    ],
+    "score": 1173.0,
+    "tasks_passed": 18,
+    "tasks_total": 18,
+    "test_set": "all",
+    "tests_passed": 92,
+    "tests_total": 92
+  },
+  {
+    "api_calls": 54,
+    "api_cost": 0.177647,
+    "api_elapsed_seconds": 282.382,
+    "correctness": 1.0,
+    "course": "python",
+    "language": "python",
+    "model": "openai/gpt-6.1-terra-pro",
+    "model_key": "openai/gpt-6.1-terra-pro",
+    "model_metadata": {
+      "evaluation_date": "2026-10-27",
+      "provider": "OpenRouter",
+      "reasoning_effort": "minimal"
+    },
+    "penalty_points": 0.0,
+    "raw_bytes": 1180,
+    "results": [
+      {
+        "api_cost": 0.004178,
+        "bytes": 19,
+        "difficulty": "easy",
+        "hole": 1,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 19,
+        "score": 19.0,
+        "task": "reverse-string",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.004134,
+        "bytes": 32,
+        "difficulty": "easy",
+        "hole": 2,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 32,
+        "score": 32.0,
+        "task": "sum-digits",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.006542,
+        "bytes": 36,
+        "difficulty": "easy",
+        "hole": 3,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 36,
+        "score": 36.0,
+        "task": "count-vowels",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.004116,
+        "bytes": 22,
+        "difficulty": "easy",
+        "hole": 4,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 22,
+        "score": 22.0,
+        "task": "palindrome",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.006145,
+        "bytes": 72,
+        "difficulty": "medium",
+        "hole": 5,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 72,
+        "score": 72.0,
+        "task": "fizzbuzz-list",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.006802,
+        "bytes": 20,
+        "difficulty": "medium",
+        "hole": 6,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 20,
+        "score": 20.0,
+        "task": "flatten",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.00458,
+        "bytes": 29,
+        "difficulty": "medium",
+        "hole": 7,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 29,
+        "score": 29.0,
+        "task": "sort-abs",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.013458,
+        "bytes": 55,
+        "difficulty": "medium",
+        "hole": 8,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 55,
+        "score": 55.0,
+        "task": "unique-preserve",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.00705,
+        "bytes": 57,
+        "difficulty": "medium",
+        "hole": 9,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 57,
+        "score": 57.0,
+        "task": "caesar-lower",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.010017,
+        "bytes": 85,
+        "difficulty": "hard",
+        "hole": 10,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 85,
+        "score": 85.0,
+        "task": "run-length-encode",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.014738,
+        "bytes": 81,
+        "difficulty": "hard",
+        "hole": 11,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 81,
+        "score": 81.0,
+        "task": "balanced-brackets",
+        "tests_passed": 7,
+        "tests_total": 7
+      },
+      {
+        "api_cost": 0.014095,
+        "bytes": 47,
+        "difficulty": "hard",
+        "hole": 12,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 47,
+        "score": 47.0,
+        "task": "nested-sum",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.011828,
+        "bytes": 50,
+        "difficulty": "hard",
+        "hole": 13,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 50,
+        "score": 50.0,
+        "task": "spiral-order",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.016273,
+        "bytes": 113,
+        "difficulty": "hard",
+        "hole": 14,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 113,
+        "score": 113.0,
+        "task": "roman-to-int",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.009993,
+        "bytes": 119,
+        "difficulty": "hard",
+        "hole": 15,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 119,
+        "score": 119.0,
+        "task": "merge-intervals",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.014526,
+        "bytes": 104,
+        "difficulty": "hard",
+        "hole": 16,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 104,
+        "score": 104.0,
+        "task": "eval-rpn",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.01633,
+        "bytes": 92,
+        "difficulty": "hard",
+        "hole": 17,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 92,
+        "score": 92.0,
+        "task": "anagram-groups",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.01284,
+        "bytes": 147,
+        "difficulty": "hard",
+        "hole": 18,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 147,
+        "score": 147.0,
+        "task": "levenshtein",
+        "tests_passed": 6,
+        "tests_total": 6
+      }
+    ],
+    "score": 1180.0,
+    "tasks_passed": 18,
+    "tasks_total": 18,
+    "test_set": "all",
+    "tests_passed": 92,
+    "tests_total": 92
+  },
+  {
+    "api_calls": 54,
     "api_cost": 0.133184,
     "api_elapsed_seconds": 146.367,
     "correctness": 1.0,
@@ -2331,6 +2858,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-opus-5.5",
     "model_key": "anthropic/claude-opus-5.5",
     "model_metadata": {
+      "evaluation_date": "2026-09-22",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -2589,6 +3117,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-opus-5",
     "model_key": "anthropic/claude-opus-5",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -2848,6 +3377,7 @@ window.CODEGOLF_RESULTS = [
     "model": "reflection/beam-1.0-501b-a23b",
     "model_key": "reflection/beam-1.0-501b-a23b",
     "model_metadata": {
+      "evaluation_date": "2026-10-17",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -3106,6 +3636,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-opus-4.8",
     "model_key": "anthropic/claude-opus-4.8",
     "model_metadata": {
+      "evaluation_date": "2026-05-30",
       "provider": "OpenRouter"
     },
     "penalty_points": 0.0,
@@ -3363,6 +3894,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.8-max",
     "model_key": "qwen/qwen3.8-max",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -3621,6 +4153,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.8-2.4t-a95b",
     "model_key": "qwen/qwen3.8-2.4t-a95b",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -3879,6 +4412,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3-flash-preview",
     "model_key": "google/gemini-3-flash-preview",
     "model_metadata": {
+      "evaluation_date": "2026-05-30",
       "provider": "OpenRouter"
     },
     "penalty_points": 20.408163,
@@ -4137,6 +4671,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6-sol",
     "model_key": "openai/gpt-6-sol",
     "model_metadata": {
+      "evaluation_date": "2026-09-22",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -4395,6 +4930,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-sonnet-5",
     "model_key": "anthropic/claude-sonnet-5",
     "model_metadata": {
+      "evaluation_date": "2026-06-30",
       "provider": "OpenRouter"
     },
     "penalty_points": 0.0,
@@ -4652,6 +5188,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.1-flash-lite",
     "model_key": "google/gemini-3.1-flash-lite",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -4910,6 +5447,7 @@ window.CODEGOLF_RESULTS = [
     "model": "z-ai/glm-5.1",
     "model_key": "z-ai/glm-5.1",
     "model_metadata": {
+      "evaluation_date": "2026-05-30",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -5169,6 +5707,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.6-flash",
     "model_key": "google/gemini-3.6-flash",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -5428,6 +5967,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.6-sol",
     "model_key": "openai/gpt-5.6-sol",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -5687,6 +6227,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-haiku-5.5",
     "model_key": "anthropic/claude-haiku-5.5",
     "model_metadata": {
+      "evaluation_date": "2026-10-09",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -5946,6 +6487,7 @@ window.CODEGOLF_RESULTS = [
     "model": "xiaomi/mimo-v2.6-pro",
     "model_key": "xiaomi/mimo-v2.6-pro",
     "model_metadata": {
+      "evaluation_date": "2026-09-22",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -6204,6 +6746,7 @@ window.CODEGOLF_RESULTS = [
     "model": "nvidia/nemotron-3.5-super-vl",
     "model_key": "nvidia/nemotron-3.5-super-vl",
     "model_metadata": {
+      "evaluation_date": "2026-10-17",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -6462,6 +7005,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.5-flash-lite",
     "model_key": "google/gemini-3.5-flash-lite",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -6722,6 +7266,7 @@ window.CODEGOLF_RESULTS = [
     "model": "upstage/solar-pro4",
     "model_key": "upstage/solar-pro4",
     "model_metadata": {
+      "evaluation_date": "2026-09-01",
       "provider": "OpenRouter"
     },
     "penalty_points": 0.0,
@@ -6979,6 +7524,7 @@ window.CODEGOLF_RESULTS = [
     "model": "moonshotai/kimi-k3.1-pro",
     "model_key": "moonshotai/kimi-k3.1-pro",
     "model_metadata": {
+      "evaluation_date": "2026-10-23",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -7238,6 +7784,7 @@ window.CODEGOLF_RESULTS = [
     "model": "moonshotai/kimi-k3",
     "model_key": "moonshotai/kimi-k3",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -7497,6 +8044,7 @@ window.CODEGOLF_RESULTS = [
     "model": "meta/muse-glimmer-30b",
     "model_key": "meta/muse-glimmer-30b",
     "model_metadata": {
+      "evaluation_date": "2026-09-01",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -7755,6 +8303,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-4-argon",
     "model_key": "google/gemini-4-argon",
     "model_metadata": {
+      "evaluation_date": "2026-10-14",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -8015,6 +8564,7 @@ window.CODEGOLF_RESULTS = [
     "model": "nvidia/nemotron-3-ultra-550b-a55b",
     "model_key": "nvidia/nemotron-3-ultra-550b-a55b",
     "model_metadata": {
+      "evaluation_date": "2026-06-21",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -8273,6 +8823,7 @@ window.CODEGOLF_RESULTS = [
     "model": "unbiased/pareto",
     "model_key": "unbiased/pareto",
     "model_metadata": {
+      "evaluation_date": "2026-09-17",
       "provider": "OpenRouter"
     },
     "penalty_points": 0.0,
@@ -8530,6 +9081,7 @@ window.CODEGOLF_RESULTS = [
     "model": "bytedance-seed/seed-2.0-code",
     "model_key": "bytedance-seed/seed-2.0-code",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -8789,6 +9341,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6.1-sol",
     "model_key": "openai/gpt-6.1-sol",
     "model_metadata": {
+      "evaluation_date": "2026-09-30",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -9039,6 +9592,265 @@ window.CODEGOLF_RESULTS = [
   },
   {
     "api_calls": 54,
+    "api_cost": 0.229978,
+    "api_elapsed_seconds": 325.352,
+    "correctness": 1.0,
+    "course": "racket",
+    "language": "racket",
+    "model": "openai/gpt-6.1-terra-pro",
+    "model_key": "openai/gpt-6.1-terra-pro",
+    "model_metadata": {
+      "evaluation_date": "2026-10-27",
+      "provider": "OpenRouter",
+      "reasoning_effort": "minimal"
+    },
+    "penalty_points": 0.0,
+    "raw_bytes": 1749,
+    "results": [
+      {
+        "api_cost": 0.006559,
+        "bytes": 52,
+        "difficulty": "easy",
+        "hole": 1,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 52,
+        "score": 52.0,
+        "task": "reverse-string",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.012019,
+        "bytes": 60,
+        "difficulty": "easy",
+        "hole": 2,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 60,
+        "score": 60.0,
+        "task": "sum-digits",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.007621,
+        "bytes": 51,
+        "difficulty": "easy",
+        "hole": 3,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 51,
+        "score": 51.0,
+        "task": "count-vowels",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.011243,
+        "bytes": 59,
+        "difficulty": "easy",
+        "hole": 4,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 59,
+        "score": 59.0,
+        "task": "palindrome",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.013309,
+        "bytes": 137,
+        "difficulty": "medium",
+        "hole": 5,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 137,
+        "score": 137.0,
+        "task": "fizzbuzz-list",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.008438,
+        "bytes": 29,
+        "difficulty": "medium",
+        "hole": 6,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 29,
+        "score": 29.0,
+        "task": "flatten",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.004945,
+        "bytes": 34,
+        "difficulty": "medium",
+        "hole": 7,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 34,
+        "score": 34.0,
+        "task": "sort-abs",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.008529,
+        "bytes": 49,
+        "difficulty": "medium",
+        "hole": 8,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 49,
+        "score": 49.0,
+        "task": "unique-preserve",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.016559,
+        "bytes": 102,
+        "difficulty": "medium",
+        "hole": 9,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 102,
+        "score": 102.0,
+        "task": "caesar-lower",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.016377,
+        "bytes": 95,
+        "difficulty": "hard",
+        "hole": 10,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 95,
+        "score": 95.0,
+        "task": "run-length-encode",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.016841,
+        "bytes": 105,
+        "difficulty": "hard",
+        "hole": 11,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 105,
+        "score": 105.0,
+        "task": "balanced-brackets",
+        "tests_passed": 7,
+        "tests_total": 7
+      },
+      {
+        "api_cost": 0.010122,
+        "bytes": 46,
+        "difficulty": "hard",
+        "hole": 12,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 46,
+        "score": 46.0,
+        "task": "nested-sum",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.018585,
+        "bytes": 89,
+        "difficulty": "hard",
+        "hole": 13,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 89,
+        "score": 89.0,
+        "task": "spiral-order",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.02182,
+        "bytes": 188,
+        "difficulty": "hard",
+        "hole": 14,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 188,
+        "score": 188.0,
+        "task": "roman-to-int",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.013209,
+        "bytes": 160,
+        "difficulty": "hard",
+        "hole": 15,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 160,
+        "score": 160.0,
+        "task": "merge-intervals",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.014782,
+        "bytes": 153,
+        "difficulty": "hard",
+        "hole": 16,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 153,
+        "score": 153.0,
+        "task": "eval-rpn",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.010534,
+        "bytes": 98,
+        "difficulty": "hard",
+        "hole": 17,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 98,
+        "score": 98.0,
+        "task": "anagram-groups",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.018488,
+        "bytes": 242,
+        "difficulty": "hard",
+        "hole": 18,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 242,
+        "score": 242.0,
+        "task": "levenshtein",
+        "tests_passed": 6,
+        "tests_total": 6
+      }
+    ],
+    "score": 1749.0,
+    "tasks_passed": 18,
+    "tasks_total": 18,
+    "test_set": "all",
+    "tests_passed": 92,
+    "tests_total": 92
+  },
+  {
+    "api_calls": 54,
     "api_cost": 0.0488,
     "api_elapsed_seconds": 69.187,
     "correctness": 0.956522,
@@ -9047,6 +9859,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.3-codex",
     "model_key": "openai/gpt-5.3-codex",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -9299,6 +10112,265 @@ window.CODEGOLF_RESULTS = [
   },
   {
     "api_calls": 54,
+    "api_cost": 0.072823,
+    "api_elapsed_seconds": 210.384,
+    "correctness": 1.0,
+    "course": "racket",
+    "language": "racket",
+    "model": "openai/gpt-6.1-terra",
+    "model_key": "openai/gpt-6.1-terra",
+    "model_metadata": {
+      "evaluation_date": "2026-10-26",
+      "provider": "OpenRouter",
+      "reasoning_effort": "minimal"
+    },
+    "penalty_points": 0.0,
+    "raw_bytes": 1842,
+    "results": [
+      {
+        "api_cost": 0.002207,
+        "bytes": 53,
+        "difficulty": "easy",
+        "hole": 1,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 53,
+        "score": 53.0,
+        "task": "reverse-string",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.004468,
+        "bytes": 60,
+        "difficulty": "easy",
+        "hole": 2,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 60,
+        "score": 60.0,
+        "task": "sum-digits",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.002149,
+        "bytes": 52,
+        "difficulty": "easy",
+        "hole": 3,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 52,
+        "score": 52.0,
+        "task": "count-vowels",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.00313,
+        "bytes": 61,
+        "difficulty": "easy",
+        "hole": 4,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 61,
+        "score": 61.0,
+        "task": "palindrome",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.004317,
+        "bytes": 159,
+        "difficulty": "medium",
+        "hole": 5,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 159,
+        "score": 159.0,
+        "task": "fizzbuzz-list",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.001968,
+        "bytes": 29,
+        "difficulty": "medium",
+        "hole": 6,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 29,
+        "score": 29.0,
+        "task": "flatten",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.00177,
+        "bytes": 33,
+        "difficulty": "medium",
+        "hole": 7,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 33,
+        "score": 33.0,
+        "task": "sort-abs",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.002785,
+        "bytes": 49,
+        "difficulty": "medium",
+        "hole": 8,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 49,
+        "score": 49.0,
+        "task": "unique-preserve",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.004363,
+        "bytes": 118,
+        "difficulty": "medium",
+        "hole": 9,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 118,
+        "score": 118.0,
+        "task": "caesar-lower",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.004946,
+        "bytes": 98,
+        "difficulty": "hard",
+        "hole": 10,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 98,
+        "score": 98.0,
+        "task": "run-length-encode",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.005716,
+        "bytes": 106,
+        "difficulty": "hard",
+        "hole": 11,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 106,
+        "score": 106.0,
+        "task": "balanced-brackets",
+        "tests_passed": 7,
+        "tests_total": 7
+      },
+      {
+        "api_cost": 0.003145,
+        "bytes": 45,
+        "difficulty": "hard",
+        "hole": 12,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 45,
+        "score": 45.0,
+        "task": "nested-sum",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.005965,
+        "bytes": 88,
+        "difficulty": "hard",
+        "hole": 13,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 88,
+        "score": 88.0,
+        "task": "spiral-order",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.00595,
+        "bytes": 169,
+        "difficulty": "hard",
+        "hole": 14,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 169,
+        "score": 169.0,
+        "task": "roman-to-int",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.004332,
+        "bytes": 150,
+        "difficulty": "hard",
+        "hole": 15,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 150,
+        "score": 150.0,
+        "task": "merge-intervals",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.005933,
+        "bytes": 152,
+        "difficulty": "hard",
+        "hole": 16,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 152,
+        "score": 152.0,
+        "task": "eval-rpn",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.003474,
+        "bytes": 98,
+        "difficulty": "hard",
+        "hole": 17,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 98,
+        "score": 98.0,
+        "task": "anagram-groups",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.006205,
+        "bytes": 322,
+        "difficulty": "hard",
+        "hole": 18,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 322,
+        "score": 322.0,
+        "task": "levenshtein",
+        "tests_passed": 6,
+        "tests_total": 6
+      }
+    ],
+    "score": 1842.0,
+    "tasks_passed": 18,
+    "tasks_total": 18,
+    "test_set": "all",
+    "tests_passed": 92,
+    "tests_total": 92
+  },
+  {
+    "api_calls": 54,
     "api_cost": 0.11589,
     "api_elapsed_seconds": 97.364,
     "correctness": 0.923913,
@@ -9307,6 +10379,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.5",
     "model_key": "openai/gpt-5.5",
     "model_metadata": {
+      "evaluation_date": "2026-05-30",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -9567,6 +10640,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.6-terra",
     "model_key": "openai/gpt-5.6-terra",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -9827,6 +10901,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6-astra-pro",
     "model_key": "openai/gpt-6-astra-pro",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter"
     },
     "penalty_points": 0.0,
@@ -10084,6 +11159,7 @@ window.CODEGOLF_RESULTS = [
     "model": "x-ai/grok-4.7",
     "model_key": "x-ai/grok-4.7",
     "model_metadata": {
+      "evaluation_date": "2026-09-24",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -10342,6 +11418,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.7-flash",
     "model_key": "google/gemini-3.7-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -10601,6 +11678,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6-astra-pro",
     "model_key": "openai/gpt-6-astra-pro",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter"
     },
     "penalty_points": 1000.0,
@@ -10859,6 +11937,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6-luna",
     "model_key": "openai/gpt-6-luna",
     "model_metadata": {
+      "evaluation_date": "2026-09-22",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -11119,6 +12198,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6-astra",
     "model_key": "openai/gpt-6-astra",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -11377,6 +12457,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6-astra",
     "model_key": "openai/gpt-6-astra",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -11636,6 +12717,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6.1-sol",
     "model_key": "openai/gpt-6.1-sol",
     "model_metadata": {
+      "evaluation_date": "2026-09-30",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -11894,6 +12976,7 @@ window.CODEGOLF_RESULTS = [
     "model": "unbiased/pareto",
     "model_key": "unbiased/pareto",
     "model_metadata": {
+      "evaluation_date": "2026-09-17",
       "provider": "OpenRouter"
     },
     "penalty_points": 0.0,
@@ -12151,6 +13234,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-opus-5.5",
     "model_key": "anthropic/claude-opus-5.5",
     "model_metadata": {
+      "evaluation_date": "2026-09-22",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -12409,6 +13493,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6-astra-pro",
     "model_key": "openai/gpt-6-astra-pro",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter"
     },
     "penalty_points": 640.0,
@@ -12667,6 +13752,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.6-luna",
     "model_key": "openai/gpt-5.6-luna",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -12920,6 +14006,524 @@ window.CODEGOLF_RESULTS = [
   },
   {
     "api_calls": 54,
+    "api_cost": 0.201904,
+    "api_elapsed_seconds": 280.404,
+    "correctness": 1.0,
+    "course": "rust",
+    "language": "rust",
+    "model": "openai/gpt-6.1-terra-pro",
+    "model_key": "openai/gpt-6.1-terra-pro",
+    "model_metadata": {
+      "evaluation_date": "2026-10-27",
+      "provider": "OpenRouter",
+      "reasoning_effort": "minimal"
+    },
+    "penalty_points": 0.0,
+    "raw_bytes": 2253,
+    "results": [
+      {
+        "api_cost": 0.004801,
+        "bytes": 48,
+        "difficulty": "easy",
+        "hole": 1,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 48,
+        "score": 48.0,
+        "task": "reverse-string",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.008397,
+        "bytes": 46,
+        "difficulty": "easy",
+        "hole": 2,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 46,
+        "score": 46.0,
+        "task": "sum-digits",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.007222,
+        "bytes": 70,
+        "difficulty": "easy",
+        "hole": 3,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 70,
+        "score": 70.0,
+        "task": "count-vowels",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.007184,
+        "bytes": 49,
+        "difficulty": "easy",
+        "hole": 4,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 49,
+        "score": 49.0,
+        "task": "palindrome",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.012255,
+        "bytes": 141,
+        "difficulty": "medium",
+        "hole": 5,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 141,
+        "score": 141.0,
+        "task": "fizzbuzz-list",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.004984,
+        "bytes": 44,
+        "difficulty": "medium",
+        "hole": 6,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 44,
+        "score": 44.0,
+        "task": "flatten",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.00757,
+        "bytes": 68,
+        "difficulty": "medium",
+        "hole": 7,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 68,
+        "score": 68.0,
+        "task": "sort-abs",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.01199,
+        "bytes": 89,
+        "difficulty": "medium",
+        "hole": 8,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 89,
+        "score": 89.0,
+        "task": "unique-preserve",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.009668,
+        "bytes": 81,
+        "difficulty": "medium",
+        "hole": 9,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 81,
+        "score": 81.0,
+        "task": "caesar-lower",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.010956,
+        "bytes": 184,
+        "difficulty": "hard",
+        "hole": 10,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 184,
+        "score": 184.0,
+        "task": "run-length-encode",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.013855,
+        "bytes": 162,
+        "difficulty": "hard",
+        "hole": 11,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 162,
+        "score": 162.0,
+        "task": "balanced-brackets",
+        "tests_passed": 7,
+        "tests_total": 7
+      },
+      {
+        "api_cost": 0.008306,
+        "bytes": 82,
+        "difficulty": "hard",
+        "hole": 12,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 82,
+        "score": 82.0,
+        "task": "nested-sum",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.020507,
+        "bytes": 198,
+        "difficulty": "hard",
+        "hole": 13,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 198,
+        "score": 198.0,
+        "task": "spiral-order",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.018129,
+        "bytes": 151,
+        "difficulty": "hard",
+        "hole": 14,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 151,
+        "score": 151.0,
+        "task": "roman-to-int",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.013671,
+        "bytes": 173,
+        "difficulty": "hard",
+        "hole": 15,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 173,
+        "score": 173.0,
+        "task": "merge-intervals",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.012487,
+        "bytes": 187,
+        "difficulty": "hard",
+        "hole": 16,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 187,
+        "score": 187.0,
+        "task": "eval-rpn",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.01403,
+        "bytes": 237,
+        "difficulty": "hard",
+        "hole": 17,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 237,
+        "score": 237.0,
+        "task": "anagram-groups",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.015893,
+        "bytes": 243,
+        "difficulty": "hard",
+        "hole": 18,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 243,
+        "score": 243.0,
+        "task": "levenshtein",
+        "tests_passed": 6,
+        "tests_total": 6
+      }
+    ],
+    "score": 2253.0,
+    "tasks_passed": 18,
+    "tasks_total": 18,
+    "test_set": "all",
+    "tests_passed": 92,
+    "tests_total": 92
+  },
+  {
+    "api_calls": 54,
+    "api_cost": 0.064037,
+    "api_elapsed_seconds": 173.3,
+    "correctness": 1.0,
+    "course": "rust",
+    "language": "rust",
+    "model": "openai/gpt-6.1-terra",
+    "model_key": "openai/gpt-6.1-terra",
+    "model_metadata": {
+      "evaluation_date": "2026-10-26",
+      "provider": "OpenRouter",
+      "reasoning_effort": "minimal"
+    },
+    "penalty_points": 0.0,
+    "raw_bytes": 2295,
+    "results": [
+      {
+        "api_cost": 0.001188,
+        "bytes": 48,
+        "difficulty": "easy",
+        "hole": 1,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 48,
+        "score": 48.0,
+        "task": "reverse-string",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.002419,
+        "bytes": 47,
+        "difficulty": "easy",
+        "hole": 2,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 47,
+        "score": 47.0,
+        "task": "sum-digits",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.001917,
+        "bytes": 70,
+        "difficulty": "easy",
+        "hole": 3,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 70,
+        "score": 70.0,
+        "task": "count-vowels",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.002092,
+        "bytes": 49,
+        "difficulty": "easy",
+        "hole": 4,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 49,
+        "score": 49.0,
+        "task": "palindrome",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.004135,
+        "bytes": 148,
+        "difficulty": "medium",
+        "hole": 5,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 148,
+        "score": 148.0,
+        "task": "fizzbuzz-list",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.001269,
+        "bytes": 44,
+        "difficulty": "medium",
+        "hole": 6,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 44,
+        "score": 44.0,
+        "task": "flatten",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.002444,
+        "bytes": 68,
+        "difficulty": "medium",
+        "hole": 7,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 68,
+        "score": 68.0,
+        "task": "sort-abs",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.003696,
+        "bytes": 89,
+        "difficulty": "medium",
+        "hole": 8,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 89,
+        "score": 89.0,
+        "task": "unique-preserve",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.002528,
+        "bytes": 82,
+        "difficulty": "medium",
+        "hole": 9,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 82,
+        "score": 82.0,
+        "task": "caesar-lower",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.003636,
+        "bytes": 185,
+        "difficulty": "hard",
+        "hole": 10,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 185,
+        "score": 185.0,
+        "task": "run-length-encode",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.005353,
+        "bytes": 162,
+        "difficulty": "hard",
+        "hole": 11,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 162,
+        "score": 162.0,
+        "task": "balanced-brackets",
+        "tests_passed": 7,
+        "tests_total": 7
+      },
+      {
+        "api_cost": 0.002724,
+        "bytes": 82,
+        "difficulty": "hard",
+        "hole": 12,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 82,
+        "score": 82.0,
+        "task": "nested-sum",
+        "tests_passed": 4,
+        "tests_total": 4
+      },
+      {
+        "api_cost": 0.006128,
+        "bytes": 216,
+        "difficulty": "hard",
+        "hole": 13,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 216,
+        "score": 216.0,
+        "task": "spiral-order",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.005408,
+        "bytes": 151,
+        "difficulty": "hard",
+        "hole": 14,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 151,
+        "score": 151.0,
+        "task": "roman-to-int",
+        "tests_passed": 6,
+        "tests_total": 6
+      },
+      {
+        "api_cost": 0.004524,
+        "bytes": 176,
+        "difficulty": "hard",
+        "hole": 15,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 176,
+        "score": 176.0,
+        "task": "merge-intervals",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.003997,
+        "bytes": 194,
+        "difficulty": "hard",
+        "hole": 16,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 194,
+        "score": 194.0,
+        "task": "eval-rpn",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.005528,
+        "bytes": 237,
+        "difficulty": "hard",
+        "hole": 17,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 237,
+        "score": 237.0,
+        "task": "anagram-groups",
+        "tests_passed": 5,
+        "tests_total": 5
+      },
+      {
+        "api_cost": 0.005051,
+        "bytes": 247,
+        "difficulty": "hard",
+        "hole": 18,
+        "passed": true,
+        "penalty_points": 0.0,
+        "raw_bytes": 247,
+        "score": 247.0,
+        "task": "levenshtein",
+        "tests_passed": 6,
+        "tests_total": 6
+      }
+    ],
+    "score": 2295.0,
+    "tasks_passed": 18,
+    "tasks_total": 18,
+    "test_set": "all",
+    "tests_passed": 92,
+    "tests_total": 92
+  },
+  {
+    "api_calls": 54,
     "api_cost": 0.527892,
     "api_elapsed_seconds": 677.708,
     "correctness": 1.0,
@@ -12928,6 +14532,7 @@ window.CODEGOLF_RESULTS = [
     "model": "x-ai/grok-4.5",
     "model_key": "x-ai/grok-4.5",
     "model_metadata": {
+      "evaluation_date": "2026-07-13",
       "provider": "OpenRouter",
       "reasoning_effort": "low"
     },
@@ -13186,6 +14791,7 @@ window.CODEGOLF_RESULTS = [
     "model": "x-ai/grok-4.6",
     "model_key": "x-ai/grok-4.6",
     "model_metadata": {
+      "evaluation_date": "2026-09-01",
       "provider": "OpenRouter",
       "reasoning_effort": "low"
     },
@@ -13444,6 +15050,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6-astra",
     "model_key": "openai/gpt-6-astra",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -13703,6 +15310,7 @@ window.CODEGOLF_RESULTS = [
     "model": "xiaomi/mimo-v2.6-flash",
     "model_key": "xiaomi/mimo-v2.6-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-22",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -13963,6 +15571,7 @@ window.CODEGOLF_RESULTS = [
     "model": "moonshotai/kimi-k3.1-pro",
     "model_key": "moonshotai/kimi-k3.1-pro",
     "model_metadata": {
+      "evaluation_date": "2026-10-23",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -14221,6 +15830,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.5",
     "model_key": "openai/gpt-5.5",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -14479,6 +16089,7 @@ window.CODEGOLF_RESULTS = [
     "model": "minimax/minimax-m3",
     "model_key": "minimax/minimax-m3",
     "model_metadata": {
+      "evaluation_date": "2026-06-01",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -14739,6 +16350,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.6-luna",
     "model_key": "openai/gpt-5.6-luna",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -14999,6 +16611,7 @@ window.CODEGOLF_RESULTS = [
     "model": "z-ai/glm-5.2",
     "model_key": "z-ai/glm-5.2",
     "model_metadata": {
+      "evaluation_date": "2026-06-20",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -15261,6 +16874,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-sonnet-5.5",
     "model_key": "anthropic/claude-sonnet-5.5",
     "model_metadata": {
+      "evaluation_date": "2026-09-30",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -15522,6 +17136,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.6-sol",
     "model_key": "openai/gpt-5.6-sol",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -15782,6 +17397,7 @@ window.CODEGOLF_RESULTS = [
     "model": "x-ai/grok-4.7",
     "model_key": "x-ai/grok-4.7",
     "model_metadata": {
+      "evaluation_date": "2026-09-24",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -16042,6 +17658,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4-pro-0813",
     "model_key": "deepseek/deepseek-v4-pro-0813",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -16302,6 +17919,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-opus-4.8",
     "model_key": "anthropic/claude-opus-4.8",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter"
     },
     "penalty_points": 160.0,
@@ -16560,6 +18178,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4.1-flash",
     "model_key": "deepseek/deepseek-v4.1-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-10",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -16819,6 +18438,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-sonnet-4.6",
     "model_key": "anthropic/claude-sonnet-4.6",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter"
     },
     "penalty_points": 40.0,
@@ -17077,6 +18697,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6-sol",
     "model_key": "openai/gpt-6-sol",
     "model_metadata": {
+      "evaluation_date": "2026-09-22",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -17337,6 +18958,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-fable-5.1",
     "model_key": "anthropic/claude-fable-5.1",
     "model_metadata": {
+      "evaluation_date": "2026-09-01",
       "provider": "OpenRouter"
     },
     "penalty_points": 1667.777778,
@@ -17597,6 +19219,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openrouter/owl-alpha",
     "model_key": "openrouter/owl-alpha",
     "model_metadata": {
+      "evaluation_date": "2026-05-28",
       "provider": "OpenRouter"
     },
     "penalty_points": 1334.444444,
@@ -17856,6 +19479,7 @@ window.CODEGOLF_RESULTS = [
     "model": "z-ai/glm-5.2",
     "model_key": "z-ai/glm-5.2",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -18115,6 +19739,7 @@ window.CODEGOLF_RESULTS = [
     "model": "moonshotai/kimi-k3",
     "model_key": "moonshotai/kimi-k3",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -18375,6 +20000,7 @@ window.CODEGOLF_RESULTS = [
     "model": "tencent/hy4-preview",
     "model_key": "tencent/hy4-preview",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -18634,6 +20260,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.8-27b",
     "model_key": "qwen/qwen3.8-27b",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -18896,6 +20523,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4-pro-0813",
     "model_key": "deepseek/deepseek-v4-pro-0813",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -19157,6 +20785,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-sonnet-5.5",
     "model_key": "anthropic/claude-sonnet-5.5",
     "model_metadata": {
+      "evaluation_date": "2026-09-30",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -19415,6 +21044,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6-luna",
     "model_key": "openai/gpt-6-luna",
     "model_metadata": {
+      "evaluation_date": "2026-09-22",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -19675,6 +21305,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.3-codex",
     "model_key": "openai/gpt-5.3-codex",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -19934,6 +21565,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4.1-flash-1017",
     "model_key": "deepseek/deepseek-v4.1-flash-1017",
     "model_metadata": {
+      "evaluation_date": "2026-10-17",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -20193,6 +21825,7 @@ window.CODEGOLF_RESULTS = [
     "model": "z-ai/glm-5.3-flash",
     "model_key": "z-ai/glm-5.3-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -20453,6 +22086,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6-sol",
     "model_key": "openai/gpt-6-sol",
     "model_metadata": {
+      "evaluation_date": "2026-09-22",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -20712,6 +22346,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.7-max",
     "model_key": "qwen/qwen3.7-max",
     "model_metadata": {
+      "evaluation_date": "2026-05-30",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -20975,6 +22610,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.8-2.4t-a95b",
     "model_key": "qwen/qwen3.8-2.4t-a95b",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -21235,6 +22871,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4-flash-0731",
     "model_key": "deepseek/deepseek-v4-flash-0731",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -21493,6 +23130,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.5-flash",
     "model_key": "google/gemini-3.5-flash",
     "model_metadata": {
+      "evaluation_date": "2026-05-30",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -21754,6 +23392,7 @@ window.CODEGOLF_RESULTS = [
     "model": "meta/muse-wonder",
     "model_key": "meta/muse-wonder",
     "model_metadata": {
+      "evaluation_date": "2026-10-14",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -22013,6 +23652,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4.1-flash",
     "model_key": "deepseek/deepseek-v4.1-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-10",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -22276,6 +23916,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.8-flash",
     "model_key": "google/gemini-3.8-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -22535,6 +24176,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-4-argon",
     "model_key": "google/gemini-4-argon",
     "model_metadata": {
+      "evaluation_date": "2026-10-14",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -22795,6 +24437,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-sonnet-4.6",
     "model_key": "anthropic/claude-sonnet-4.6",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter"
     },
     "penalty_points": 1640.0,
@@ -23054,6 +24697,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-4-argon",
     "model_key": "google/gemini-4-argon",
     "model_metadata": {
+      "evaluation_date": "2026-10-14",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -23314,6 +24958,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.1-pro-preview",
     "model_key": "google/gemini-3.1-pro-preview",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -23573,6 +25218,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.8-max",
     "model_key": "qwen/qwen3.8-max",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -23832,6 +25478,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.1-pro-preview",
     "model_key": "google/gemini-3.1-pro-preview",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -24092,6 +25739,7 @@ window.CODEGOLF_RESULTS = [
     "model": "inception/mercury-2.5-preview",
     "model_key": "inception/mercury-2.5-preview",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -24354,6 +26002,7 @@ window.CODEGOLF_RESULTS = [
     "model": "bytedance-seed/seed-2.0-code",
     "model_key": "bytedance-seed/seed-2.0-code",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -24614,6 +26263,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-sonnet-5",
     "model_key": "anthropic/claude-sonnet-5",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter"
     },
     "penalty_points": 111.111111,
@@ -24872,6 +26522,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-oss-120b:free",
     "model_key": "openai/gpt-oss-120b:free",
     "model_metadata": {
+      "evaluation_date": "2026-05-23",
       "provider": "OpenRouter"
     },
     "penalty_points": 2000.0,
@@ -25131,6 +26782,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-fable-5",
     "model_key": "anthropic/claude-fable-5",
     "model_metadata": {
+      "evaluation_date": "2026-06-11",
       "provider": "OpenRouter"
     },
     "penalty_points": 2000.0,
@@ -25390,6 +27042,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4.1-flash-1017",
     "model_key": "deepseek/deepseek-v4.1-flash-1017",
     "model_metadata": {
+      "evaluation_date": "2026-10-17",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -25652,6 +27305,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.7-flash",
     "model_key": "google/gemini-3.7-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -25912,6 +27566,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-oss-120b:free",
     "model_key": "openai/gpt-oss-120b:free",
     "model_metadata": {
+      "evaluation_date": "2026-07-12",
       "provider": "OpenRouter"
     },
     "penalty_points": 1040.0,
@@ -26171,6 +27826,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.6-terra",
     "model_key": "openai/gpt-5.6-terra",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -26432,6 +28088,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-opus-5",
     "model_key": "anthropic/claude-opus-5",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -26693,6 +28350,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.8-flash",
     "model_key": "qwen/qwen3.8-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter"
     },
     "penalty_points": 1290.0,
@@ -26953,6 +28611,7 @@ window.CODEGOLF_RESULTS = [
     "model": "minimax/minimax-m3.1-flash",
     "model_key": "minimax/minimax-m3.1-flash",
     "model_metadata": {
+      "evaluation_date": "2026-10-23",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -27214,6 +28873,7 @@ window.CODEGOLF_RESULTS = [
     "model": "meta/muse-wonder",
     "model_key": "meta/muse-wonder",
     "model_metadata": {
+      "evaluation_date": "2026-10-14",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -27474,6 +29134,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-haiku-5.5",
     "model_key": "anthropic/claude-haiku-5.5",
     "model_metadata": {
+      "evaluation_date": "2026-10-09",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -27733,6 +29394,7 @@ window.CODEGOLF_RESULTS = [
     "model": "xiaomi/mimo-v2.6-pro",
     "model_key": "xiaomi/mimo-v2.6-pro",
     "model_metadata": {
+      "evaluation_date": "2026-09-22",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -27993,6 +29655,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.5-flash",
     "model_key": "google/gemini-3.5-flash",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -28251,6 +29914,7 @@ window.CODEGOLF_RESULTS = [
     "model": "reflection/beam-1.0-501b-a23b",
     "model_key": "reflection/beam-1.0-501b-a23b",
     "model_metadata": {
+      "evaluation_date": "2026-10-17",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -28511,6 +30175,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3-flash-preview",
     "model_key": "google/gemini-3-flash-preview",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter"
     },
     "penalty_points": 1444.444444,
@@ -28770,6 +30435,7 @@ window.CODEGOLF_RESULTS = [
     "model": "poolside/laguna-xs-2.1",
     "model_key": "poolside/laguna-xs-2.1",
     "model_metadata": {
+      "evaluation_date": "2026-07-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -29031,6 +30697,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.6-flash",
     "model_key": "google/gemini-3.6-flash",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -29291,6 +30958,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-sonnet-5",
     "model_key": "anthropic/claude-sonnet-5",
     "model_metadata": {
+      "evaluation_date": "2026-06-30",
       "provider": "OpenRouter"
     },
     "penalty_points": 2000.0,
@@ -29550,6 +31218,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.8-flash",
     "model_key": "google/gemini-3.8-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -29810,6 +31479,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.7-flash",
     "model_key": "google/gemini-3.7-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -30070,6 +31740,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-opus-5.5",
     "model_key": "anthropic/claude-opus-5.5",
     "model_metadata": {
+      "evaluation_date": "2026-09-22",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -30330,6 +32001,7 @@ window.CODEGOLF_RESULTS = [
     "model": "reflection/beam-1.0-501b-a23b",
     "model_key": "reflection/beam-1.0-501b-a23b",
     "model_metadata": {
+      "evaluation_date": "2026-10-17",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -30590,6 +32262,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.7-flash",
     "model_key": "qwen/qwen3.7-flash",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -30853,6 +32526,7 @@ window.CODEGOLF_RESULTS = [
     "model": "z-ai/glm-5.3",
     "model_key": "z-ai/glm-5.3",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -31112,6 +32786,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4-pro",
     "model_key": "deepseek/deepseek-v4-pro",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -31373,6 +33048,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4-flash",
     "model_key": "deepseek/deepseek-v4-flash",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -31633,6 +33309,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.5-flash-lite",
     "model_key": "google/gemini-3.5-flash-lite",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -31892,6 +33569,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-haiku-5.5",
     "model_key": "anthropic/claude-haiku-5.5",
     "model_metadata": {
+      "evaluation_date": "2026-10-09",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -32153,6 +33831,7 @@ window.CODEGOLF_RESULTS = [
     "model": "xiaomi/mimo-v2.6-flash",
     "model_key": "xiaomi/mimo-v2.6-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-23",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -32413,6 +34092,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4-pro-0813",
     "model_key": "deepseek/deepseek-v4-pro-0813",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -32673,6 +34353,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.8-flash",
     "model_key": "qwen/qwen3.8-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter"
     },
     "penalty_points": 3749.410431,
@@ -32937,6 +34618,7 @@ window.CODEGOLF_RESULTS = [
     "model": "x-ai/grok-4.3",
     "model_key": "x-ai/grok-4.3",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -33197,6 +34879,7 @@ window.CODEGOLF_RESULTS = [
     "model": "x-ai/grok-4.6",
     "model_key": "x-ai/grok-4.6",
     "model_metadata": {
+      "evaluation_date": "2026-09-01",
       "provider": "OpenRouter",
       "reasoning_effort": "low"
     },
@@ -33458,6 +35141,7 @@ window.CODEGOLF_RESULTS = [
     "model": "mistralai/mistral-large-4-0",
     "model_key": "mistralai/mistral-large-4-0",
     "model_metadata": {
+      "evaluation_date": "2026-10-09",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -33721,6 +35405,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.4-mini",
     "model_key": "openai/gpt-5.4-mini",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -33986,6 +35671,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.7-max",
     "model_key": "qwen/qwen3.7-max",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -34248,6 +35934,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.8-2.4t-a95b",
     "model_key": "qwen/qwen3.8-2.4t-a95b",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -34509,6 +36196,7 @@ window.CODEGOLF_RESULTS = [
     "model": "z-ai/glm-5.3-flash",
     "model_key": "z-ai/glm-5.3-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -34771,6 +36459,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4-pro",
     "model_key": "deepseek/deepseek-v4-pro",
     "model_metadata": {
+      "evaluation_date": "2026-05-30",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -35034,6 +36723,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4-flash",
     "model_key": "deepseek/deepseek-v4-flash",
     "model_metadata": {
+      "evaluation_date": "2026-05-30",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -35297,6 +36987,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.6-sol",
     "model_key": "openai/gpt-5.6-sol",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -35560,6 +37251,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.4-mini",
     "model_key": "openai/gpt-5.4-mini",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -35821,6 +37513,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-fable-5.1",
     "model_key": "anthropic/claude-fable-5.1",
     "model_metadata": {
+      "evaluation_date": "2026-09-01",
       "provider": "OpenRouter"
     },
     "penalty_points": 4000.0,
@@ -36082,6 +37775,7 @@ window.CODEGOLF_RESULTS = [
     "model": "tencent/hy4-preview",
     "model_key": "tencent/hy4-preview",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -36346,6 +38040,7 @@ window.CODEGOLF_RESULTS = [
     "model": "minimax/minimax-m3.1-flash",
     "model_key": "minimax/minimax-m3.1-flash",
     "model_metadata": {
+      "evaluation_date": "2026-10-23",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -36607,6 +38302,7 @@ window.CODEGOLF_RESULTS = [
     "model": "tencent/hy3-preview",
     "model_key": "tencent/hy3-preview",
     "model_metadata": {
+      "evaluation_date": "2026-07-12",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -36869,6 +38565,7 @@ window.CODEGOLF_RESULTS = [
     "model": "z-ai/glm-5.3-flash",
     "model_key": "z-ai/glm-5.3-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -37132,6 +38829,7 @@ window.CODEGOLF_RESULTS = [
     "model": "tencent/hy3-preview",
     "model_key": "tencent/hy3-preview",
     "model_metadata": {
+      "evaluation_date": "2026-05-24",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -37396,6 +39094,7 @@ window.CODEGOLF_RESULTS = [
     "model": "z-ai/glm-5.1",
     "model_key": "z-ai/glm-5.1",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -37658,6 +39357,7 @@ window.CODEGOLF_RESULTS = [
     "model": "moonshotai/kimi-k2.6",
     "model_key": "moonshotai/kimi-k2.6",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -37919,6 +39619,7 @@ window.CODEGOLF_RESULTS = [
     "model": "xiaomi/mimo-v2.5",
     "model_key": "xiaomi/mimo-v2.5",
     "model_metadata": {
+      "evaluation_date": "2026-05-30",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -38183,6 +39884,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-opus-5",
     "model_key": "anthropic/claude-opus-5",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -38445,6 +40147,7 @@ window.CODEGOLF_RESULTS = [
     "model": "x-ai/grok-4.3",
     "model_key": "x-ai/grok-4.3",
     "model_metadata": {
+      "evaluation_date": "2026-05-30",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -38709,6 +40412,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4-flash-0731",
     "model_key": "deepseek/deepseek-v4-flash-0731",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -38972,6 +40676,7 @@ window.CODEGOLF_RESULTS = [
     "model": "mistralai/mistral-medium-3-5",
     "model_key": "mistralai/mistral-medium-3-5",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -39238,6 +40943,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.8-max",
     "model_key": "qwen/qwen3.8-max",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -39501,6 +41207,7 @@ window.CODEGOLF_RESULTS = [
     "model": "bytedance-seed/seed-2.0-code",
     "model_key": "bytedance-seed/seed-2.0-code",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -39762,6 +41469,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.1-flash-lite",
     "model_key": "google/gemini-3.1-flash-lite",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -40024,6 +41732,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-sonnet-5.5",
     "model_key": "anthropic/claude-sonnet-5.5",
     "model_metadata": {
+      "evaluation_date": "2026-09-30",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -40285,6 +41994,7 @@ window.CODEGOLF_RESULTS = [
     "model": "mistralai/mistral-large-4-0",
     "model_key": "mistralai/mistral-large-4-0",
     "model_metadata": {
+      "evaluation_date": "2026-10-09",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -40548,6 +42258,7 @@ window.CODEGOLF_RESULTS = [
     "model": "nvidia/nemotron-3.5-super-vl",
     "model_key": "nvidia/nemotron-3.5-super-vl",
     "model_metadata": {
+      "evaluation_date": "2026-10-17",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -40810,6 +42521,7 @@ window.CODEGOLF_RESULTS = [
     "model": "moonshotai/kimi-k3.1-pro",
     "model_key": "moonshotai/kimi-k3.1-pro",
     "model_metadata": {
+      "evaluation_date": "2026-10-23",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -41073,6 +42785,7 @@ window.CODEGOLF_RESULTS = [
     "model": "nvidia/nemotron-3-ultra-550b-a55b",
     "model_key": "nvidia/nemotron-3-ultra-550b-a55b",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -41334,6 +43047,7 @@ window.CODEGOLF_RESULTS = [
     "model": "moonshotai/kimi-k2.6",
     "model_key": "moonshotai/kimi-k2.6",
     "model_metadata": {
+      "evaluation_date": "2026-05-30",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -41597,6 +43311,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4.1-flash-1017",
     "model_key": "deepseek/deepseek-v4.1-flash-1017",
     "model_metadata": {
+      "evaluation_date": "2026-10-17",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -41859,6 +43574,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4-pro",
     "model_key": "deepseek/deepseek-v4-pro",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -42121,6 +43837,7 @@ window.CODEGOLF_RESULTS = [
     "model": "tencent/hy4-preview",
     "model_key": "tencent/hy4-preview",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -42383,6 +44100,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.7-flash",
     "model_key": "qwen/qwen3.7-flash",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -42643,6 +44361,7 @@ window.CODEGOLF_RESULTS = [
     "model": "moonshotai/kimi-k2.6",
     "model_key": "moonshotai/kimi-k2.6",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -42905,6 +44624,7 @@ window.CODEGOLF_RESULTS = [
     "model": "ibm-granite/granite-4.2-8b",
     "model_key": "ibm-granite/granite-4.2-8b",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -43165,6 +44885,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-opus-4.8",
     "model_key": "anthropic/claude-opus-4.8",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter"
     },
     "penalty_points": 4160.0,
@@ -43427,6 +45148,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-fable-5.1",
     "model_key": "anthropic/claude-fable-5.1",
     "model_metadata": {
+      "evaluation_date": "2026-09-01",
       "provider": "OpenRouter"
     },
     "penalty_points": 5000.0,
@@ -43689,6 +45411,7 @@ window.CODEGOLF_RESULTS = [
     "model": "inception/mercury-2.5-preview",
     "model_key": "inception/mercury-2.5-preview",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -43950,6 +45673,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.6-luna",
     "model_key": "openai/gpt-5.6-luna",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -44215,6 +45939,7 @@ window.CODEGOLF_RESULTS = [
     "model": "meta/muse-glimmer-30b",
     "model_key": "meta/muse-glimmer-30b",
     "model_metadata": {
+      "evaluation_date": "2026-09-01",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -44477,6 +46202,7 @@ window.CODEGOLF_RESULTS = [
     "model": "x-ai/grok-4.5",
     "model_key": "x-ai/grok-4.5",
     "model_metadata": {
+      "evaluation_date": "2026-08-04",
       "provider": "OpenRouter",
       "reasoning_effort": "low"
     },
@@ -44740,6 +46466,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.6-flash",
     "model_key": "google/gemini-3.6-flash",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -45003,6 +46730,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4.1-flash",
     "model_key": "deepseek/deepseek-v4.1-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-10",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -45266,6 +46994,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-sonnet-4.6",
     "model_key": "anthropic/claude-sonnet-4.6",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter"
     },
     "penalty_points": 5000.0,
@@ -45529,6 +47258,7 @@ window.CODEGOLF_RESULTS = [
     "model": "minimax/minimax-m3",
     "model_key": "minimax/minimax-m3",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -45793,6 +47523,7 @@ window.CODEGOLF_RESULTS = [
     "model": "moonshotai/kimi-k3",
     "model_key": "moonshotai/kimi-k3",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -46058,6 +47789,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.3-codex",
     "model_key": "openai/gpt-5.3-codex",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -46323,6 +48055,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4-flash-0731",
     "model_key": "deepseek/deepseek-v4-flash-0731",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -46587,6 +48320,7 @@ window.CODEGOLF_RESULTS = [
     "model": "thinkingmachines/inkling",
     "model_key": "thinkingmachines/inkling",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -46852,6 +48586,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.5",
     "model_key": "openai/gpt-5.5",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -47118,6 +48853,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.8-27b",
     "model_key": "qwen/qwen3.8-27b",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -47384,6 +49120,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.5-flash-lite",
     "model_key": "google/gemini-3.5-flash-lite",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -47650,6 +49387,7 @@ window.CODEGOLF_RESULTS = [
     "model": "z-ai/glm-5.2",
     "model_key": "z-ai/glm-5.2",
     "model_metadata": {
+      "evaluation_date": "2026-06-20",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -47916,6 +49654,7 @@ window.CODEGOLF_RESULTS = [
     "model": "poolside/laguna-xs-2.1",
     "model_key": "poolside/laguna-xs-2.1",
     "model_metadata": {
+      "evaluation_date": "2026-07-12",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -48180,6 +49919,7 @@ window.CODEGOLF_RESULTS = [
     "model": "xingchen-agi/xing4.0-29b-a4b:free",
     "model_key": "xingchen-agi/xing4.0-29b-a4b:free",
     "model_metadata": {
+      "evaluation_date": "2026-10-17",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -48445,6 +50185,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3-flash-preview",
     "model_key": "google/gemini-3-flash-preview",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter"
     },
     "penalty_points": 7307.777778,
@@ -48711,6 +50452,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.4-mini",
     "model_key": "openai/gpt-5.4-mini",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -48978,6 +50720,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.1-flash-lite",
     "model_key": "google/gemini-3.1-flash-lite",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -49245,6 +50988,7 @@ window.CODEGOLF_RESULTS = [
     "model": "deepseek/deepseek-v4-flash",
     "model_key": "deepseek/deepseek-v4-flash",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -49513,6 +51257,7 @@ window.CODEGOLF_RESULTS = [
     "model": "xingchen-agi/xing4.0-29b-a4b:free",
     "model_key": "xingchen-agi/xing4.0-29b-a4b:free",
     "model_metadata": {
+      "evaluation_date": "2026-10-17",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -49783,6 +51528,7 @@ window.CODEGOLF_RESULTS = [
     "model": "nvidia/nemotron-3.5-super-vl",
     "model_key": "nvidia/nemotron-3.5-super-vl",
     "model_metadata": {
+      "evaluation_date": "2026-10-17",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -50050,6 +51796,7 @@ window.CODEGOLF_RESULTS = [
     "model": "nvidia/nemotron-3-ultra-550b-a55b",
     "model_key": "nvidia/nemotron-3-ultra-550b-a55b",
     "model_metadata": {
+      "evaluation_date": "2026-06-21",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -50315,6 +52062,7 @@ window.CODEGOLF_RESULTS = [
     "model": "google/gemini-3.5-flash",
     "model_key": "google/gemini-3.5-flash",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -50581,6 +52329,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-6-luna",
     "model_key": "openai/gpt-6-luna",
     "model_metadata": {
+      "evaluation_date": "2026-09-22",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -50847,6 +52596,7 @@ window.CODEGOLF_RESULTS = [
     "model": "z-ai/glm-5.1",
     "model_key": "z-ai/glm-5.1",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -51114,6 +52864,7 @@ window.CODEGOLF_RESULTS = [
     "model": "xiaomi/mimo-v2.6-pro",
     "model_key": "xiaomi/mimo-v2.6-pro",
     "model_metadata": {
+      "evaluation_date": "2026-09-22",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -51381,6 +53132,7 @@ window.CODEGOLF_RESULTS = [
     "model": "x-ai/grok-4.3",
     "model_key": "x-ai/grok-4.3",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -51647,6 +53399,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.7-max",
     "model_key": "qwen/qwen3.7-max",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -51913,6 +53666,7 @@ window.CODEGOLF_RESULTS = [
     "model": "meta/muse-glimmer-30b",
     "model_key": "meta/muse-glimmer-30b",
     "model_metadata": {
+      "evaluation_date": "2026-09-01",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -52181,6 +53935,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-5.6-terra",
     "model_key": "openai/gpt-5.6-terra",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -52448,6 +54203,7 @@ window.CODEGOLF_RESULTS = [
     "model": "anthropic/claude-fable-5",
     "model_key": "anthropic/claude-fable-5",
     "model_metadata": {
+      "evaluation_date": "2026-08-04",
       "provider": "OpenRouter"
     },
     "penalty_points": 10000.0,
@@ -52715,6 +54471,7 @@ window.CODEGOLF_RESULTS = [
     "model": "upstage/solar-pro4",
     "model_key": "upstage/solar-pro4",
     "model_metadata": {
+      "evaluation_date": "2026-09-01",
       "provider": "OpenRouter"
     },
     "penalty_points": 8360.0,
@@ -52981,6 +54738,7 @@ window.CODEGOLF_RESULTS = [
     "model": "mistralai/mistral-large-4-0",
     "model_key": "mistralai/mistral-large-4-0",
     "model_metadata": {
+      "evaluation_date": "2026-10-09",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -53248,6 +55006,7 @@ window.CODEGOLF_RESULTS = [
     "model": "tencent/hy3-preview",
     "model_key": "tencent/hy3-preview",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -53517,6 +55276,7 @@ window.CODEGOLF_RESULTS = [
     "model": "ibm-granite/granite-4.2-8b",
     "model_key": "ibm-granite/granite-4.2-8b",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -53783,6 +55543,7 @@ window.CODEGOLF_RESULTS = [
     "model": "xiaomi/mimo-v2.5",
     "model_key": "xiaomi/mimo-v2.5",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -54054,6 +55815,7 @@ window.CODEGOLF_RESULTS = [
     "model": "upstage/solar-pro4",
     "model_key": "upstage/solar-pro4",
     "model_metadata": {
+      "evaluation_date": "2026-09-01",
       "provider": "OpenRouter"
     },
     "penalty_points": 9084.444444,
@@ -54321,6 +56083,7 @@ window.CODEGOLF_RESULTS = [
     "model": "minimax/minimax-m3",
     "model_key": "minimax/minimax-m3",
     "model_metadata": {
+      "evaluation_date": "2026-06-01",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -54590,6 +56353,7 @@ window.CODEGOLF_RESULTS = [
     "model": "minimax/minimax-m3.1-flash",
     "model_key": "minimax/minimax-m3.1-flash",
     "model_metadata": {
+      "evaluation_date": "2026-10-23",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -54860,6 +56624,7 @@ window.CODEGOLF_RESULTS = [
     "model": "xiaomi/mimo-v2.6-flash",
     "model_key": "xiaomi/mimo-v2.6-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-23",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -55131,6 +56896,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.8-flash",
     "model_key": "qwen/qwen3.8-flash",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter"
     },
     "penalty_points": 11040.0,
@@ -55401,6 +57167,7 @@ window.CODEGOLF_RESULTS = [
     "model": "z-ai/glm-5.3",
     "model_key": "z-ai/glm-5.3",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -55665,6 +57432,7 @@ window.CODEGOLF_RESULTS = [
     "model": "mistralai/mistral-medium-3-5",
     "model_key": "mistralai/mistral-medium-3-5",
     "model_metadata": {
+      "evaluation_date": "2026-07-11",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -55935,6 +57703,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.7-flash",
     "model_key": "qwen/qwen3.7-flash",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -56205,6 +57974,7 @@ window.CODEGOLF_RESULTS = [
     "model": "z-ai/glm-5.3",
     "model_key": "z-ai/glm-5.3",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -56472,6 +58242,7 @@ window.CODEGOLF_RESULTS = [
     "model": "inception/mercury-2.5-preview",
     "model_key": "inception/mercury-2.5-preview",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -56742,6 +58513,7 @@ window.CODEGOLF_RESULTS = [
     "model": "thinkingmachines/inkling",
     "model_key": "thinkingmachines/inkling",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -57012,6 +58784,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openai/gpt-oss-120b:free",
     "model_key": "openai/gpt-oss-120b:free",
     "model_metadata": {
+      "evaluation_date": "2026-05-31",
       "provider": "OpenRouter"
     },
     "penalty_points": 13000.0,
@@ -57282,6 +59055,7 @@ window.CODEGOLF_RESULTS = [
     "model": "poolside/laguna-xs-2.1",
     "model_key": "poolside/laguna-xs-2.1",
     "model_metadata": {
+      "evaluation_date": "2026-07-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -57554,6 +59328,7 @@ window.CODEGOLF_RESULTS = [
     "model": "openrouter/owl-alpha",
     "model_key": "openrouter/owl-alpha",
     "model_metadata": {
+      "evaluation_date": "2026-05-30",
       "provider": "OpenRouter"
     },
     "penalty_points": 13562.5,
@@ -57825,6 +59600,7 @@ window.CODEGOLF_RESULTS = [
     "model": "mistralai/mistral-medium-3-5",
     "model_key": "mistralai/mistral-medium-3-5",
     "model_metadata": {
+      "evaluation_date": "2026-06-05",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -58098,6 +59874,7 @@ window.CODEGOLF_RESULTS = [
     "model": "qwen/qwen3.8-27b",
     "model_key": "qwen/qwen3.8-27b",
     "model_metadata": {
+      "evaluation_date": "2026-09-02",
       "provider": "OpenRouter",
       "reasoning_effort": "minimal"
     },
@@ -58370,6 +60147,7 @@ window.CODEGOLF_RESULTS = [
     "model": "ibm-granite/granite-4.2-8b",
     "model_key": "ibm-granite/granite-4.2-8b",
     "model_metadata": {
+      "evaluation_date": "2026-09-04",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -58644,6 +60422,7 @@ window.CODEGOLF_RESULTS = [
     "model": "xingchen-agi/xing4.0-29b-a4b:free",
     "model_key": "xingchen-agi/xing4.0-29b-a4b:free",
     "model_metadata": {
+      "evaluation_date": "2026-10-17",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },
@@ -58918,6 +60697,7 @@ window.CODEGOLF_RESULTS = [
     "model": "thinkingmachines/inkling",
     "model_key": "thinkingmachines/inkling",
     "model_metadata": {
+      "evaluation_date": "2026-08-03",
       "provider": "OpenRouter",
       "reasoning_effort": "none"
     },

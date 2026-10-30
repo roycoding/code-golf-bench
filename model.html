@@ -20,6 +20,9 @@
     <title>Code Golf Model Results</title>
     <link rel="icon" type="image/png" href="code_golf_bench_background1.png">
     <script src="results.js"></script>
+    <script src="model-info.js"></script>
+    <script src="model-details.js"></script>
+    <link rel="stylesheet" href="model-details.css">
     <style>
       :root {
         color-scheme: dark;
@@ -310,6 +313,7 @@
           <p class="subhead" id="subhead">Lower score is better.</p>
           <p class="view-context" id="view-context"></p>
           <p class="metadata" id="metadata"></p>
+          <p class="model-links" id="model-links"></p>
         </div>
         <a class="top-link" href="index.html">Back to Leaderboard</a>
       </header>
@@ -335,6 +339,7 @@
               <th class="sortable number course-sort" data-key="tasks_passed" title="Holes where every test passed. This is different from test-level correctness.">Holes Passed</th>
               <th class="sortable number course-sort" data-key="api_cost" title="Total API cost for this course in USD.">API Cost</th>
               <th class="sortable number course-sort" data-key="cost_per_hole" title="Average API cost per hole in USD.">Cost/Hole</th>
+              <th class="sortable course-sort" data-key="evaluation_date" title="Recorded evaluation date of the run used for this score.">Tested</th>
             </tr>
           </thead>
           <tbody id="course-rows"></tbody>
@@ -519,6 +524,7 @@
       }
 
       function valueForSort(item, key) {
+        if (key === "evaluation_date") return CodegolfDetails.evaluationDate(item);
         if (key === "bytes") return item.bytes ?? Number.POSITIVE_INFINITY;
         if (key === "tests_passed") return item.tests_passed / Math.max(item.tests_total, 1);
         if (key === "course") return courseLabel(courseKey(item));
@@ -552,7 +558,7 @@
             <td class="number">${item.hole ?? ""}</td>
             <td><code>${item.task}</code></td>
             <td>${difficultyCell(item)}</td>
-            <td class="number">${fmtScore(item.score)}</td>
+            ${CodegolfDetails.scoreCell(item, fmtScore(item.score))}
             <td class="number">${byteCell(item)}</td>
             <td class="number">${fmtScore(penaltyPoints(item))}</td>
             <td class="number">${item.tests_passed}/${item.tests_total}</td>
@@ -589,13 +595,14 @@
           tr.innerHTML = `
             <td><a href="${href}">${escapeHtml(courseLabel(course))}</a></td>
             <td class="number">${rank ? `#${rank}` : "-"}</td>
-            <td class="number">${fmtScore(item.score)}</td>
+            ${CodegolfDetails.scoreCell(item, fmtScore(item.score))}
             <td class="number">${item.raw_bytes}</td>
             <td class="number">${fmtScore(penaltyPoints(item))}</td>
             <td class="number" title="Tests passed / total tests: ${testFraction(item)}">${correctnessCell(item)}</td>
             <td class="number passed" title="Fully passed holes / total holes">${item.tasks_passed}/${item.tasks_total}</td>
             <td class="number">${fmtCost(apiCost(item))}</td>
             <td class="number">${fmtCost(costPerHole(item))}</td>
+            <td>${CodegolfDetails.dateCell(item)}</td>
           `;
           courseRows.appendChild(tr);
         }
@@ -622,9 +629,10 @@
           metadata.model_id,
           metadata.reasoning_effort ? `reasoning: ${metadata.reasoning_effort}` : null,
           selectedCourse ? `course: ${courseLabel(selectedCourse)}` : null,
-          selectedCourse && result ? `run variant: ${result.variant}` : null,
+          selectedCourse && result?.variant ? `run variant: ${result.variant}` : null,
           selectedCourse && result ? `language: ${result.language}` : null,
           `tests: ${summarySource.test_set}`,
+          selectedCourse && result ? `tested: ${CodegolfDetails.evaluationDate(result) || "Not recorded"}` : null,
         ].filter(Boolean);
 
         document.querySelector("#model").textContent = summarySource.model || summarySource.variant;
@@ -635,6 +643,7 @@
         document.querySelector("#view-context").textContent =
           selectedCourse && result ? `${courseLabel(selectedCourse)} Course` : "Course Summary";
         document.querySelector("#metadata").textContent = metaParts.join(" | ");
+        document.querySelector("#model-links").innerHTML = CodegolfDetails.annotations(summarySource, true);
         document.querySelector("#score").textContent = selectedCourse && result ? fmtScore(result.score) : fmtScore(totalScore);
         document.querySelector("#penalty").textContent = selectedCourse && result ? fmtScore(penaltyPoints(result)) : fmtScore(totalPenalty);
         document.querySelector("#correctness").textContent =

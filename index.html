@@ -20,6 +20,9 @@
     <title>Code Golf Benchmark v0.1 Leaderboard</title>
     <link rel="icon" type="image/png" href="code_golf_bench_background1.png">
     <script src="results.js"></script>
+    <script src="model-info.js"></script>
+    <script src="model-details.js"></script>
+    <link rel="stylesheet" href="model-details.css">
     <style>
       :root {
         color-scheme: dark;
@@ -270,6 +273,22 @@
         padding: 0 5px 5px 0;
       }
 
+      .course-leaderboard th,
+      .course-leaderboard td {
+        padding: 10px 8px;
+      }
+
+      .course-leaderboard th {
+        white-space: normal;
+      }
+
+      .course-leaderboard .model-name-cell {
+        min-width: 150px;
+        max-width: 250px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+
       .tabs {
         display: flex;
         flex-wrap: wrap;
@@ -477,6 +496,12 @@
           <tbody id="leaderboard"></tbody>
         </table>
       </div>
+
+      <p class="leaderboard-legend">
+        <span><span class="legend-clean">✓</span> Zero penalties in the displayed score</span>
+        <span><span class="open-weight-badge">OW</span> Confirmed open weights · source on model page</span>
+        <span>Hover model name for test dates</span>
+      </p>
 
       <footer class="site-footer">Made by <a href="https://roycoding.com">roycoding</a></footer>
     </main>
@@ -899,8 +924,8 @@
           const href = `model.html?model=${encodeURIComponent(model.model_key)}`;
           tr.innerHTML = `
             <td class="number rank">${model.rank}</td>
-            <td><a href="${href}">${escapeHtml(model.model || model.model_key)}</a></td>
-            <td class="number">${model.complete ? fmtScore(model.total_score) : "Incomplete"}</td>
+            <td class="model-name-cell"><a href="${href}" title="Tested — ${escapeHtml(CodegolfDetails.testedTitle(model))}">${escapeHtml(model.model || model.model_key)}</a> ${CodegolfDetails.annotations(model)}</td>
+            ${CodegolfDetails.scoreCell(model, model.complete ? fmtScore(model.total_score) : "Incomplete")}
             ${includedCourses.map((course) => {
               const rank = courseRanks.get(course)?.get(model.model_key);
               return `<td class="number">${rank ? `#${rank}` : "-"}</td>`;
@@ -924,8 +949,8 @@
           const tr = document.createElement("tr");
           tr.innerHTML = `
             <td class="number rank">${result.rank}</td>
-            <td><a href="${href}">${escapeHtml(result.model || result.variant || result.run)}</a></td>
-            <td class="number">${fmtScore(result.score)}</td>
+            <td class="model-name-cell"><a href="${href}" title="Tested — ${escapeHtml(CodegolfDetails.testedTitle(result))}">${escapeHtml(result.model || result.variant || result.run)}</a> ${CodegolfDetails.annotations(result)}</td>
+            ${CodegolfDetails.scoreCell(result, fmtScore(result.score))}
             <td class="number">${result.raw_bytes}</td>
             <td class="number">${fmtScore(penaltyPoints(result))}</td>
             <td class="number" title="Tests passed / total tests: ${testFraction(result)}">${correctnessCell(result)}</td>
@@ -937,6 +962,7 @@
       }
 
       function renderTable() {
+        head.closest("table").classList.toggle("course-leaderboard", activeView !== ALL_COURSES);
         const items = activeView === ALL_COURSES ? buildCombinedRows() : rankedCourseResults(activeView);
         if (activeView === ALL_COURSES) {
           renderCombinedHeader();

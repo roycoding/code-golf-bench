@@ -269,6 +269,11 @@ window.CODEGOLF_MODEL_INFO = {
     "open_weight": null,
     "source_url": "https://openrouter.ai/openrouter/owl-alpha"
   },
+  "particle-ai/particle-1": {
+    "checked_on": "2026-10-30",
+    "open_weight": null,
+    "source_url": "https://openrouter.ai/particle-ai/particle-1"
+  },
   "poolside/laguna-xs-2.1": {
     "checked_on": "2026-10-27",
     "open_weight": true,

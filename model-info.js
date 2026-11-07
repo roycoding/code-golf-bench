@@ -314,10 +314,20 @@ window.CODEGOLF_MODEL_INFO = {
     "open_weight": true,
     "source_url": "https://huggingface.co/reflection/Beam-1.0-501B-A23B"
   },
+  "stealth/crouton-alpha": {
+    "checked_on": "2026-11-04",
+    "open_weight": null,
+    "source_url": "https://openrouter.ai/stealth/crouton-alpha"
+  },
   "tencent/hy3-preview": {
     "checked_on": "2026-10-27",
     "open_weight": true,
     "source_url": "https://huggingface.co/tencent/Hy3-preview"
+  },
+  "tencent/hy4": {
+    "checked_on": "2026-11-06",
+    "open_weight": null,
+    "source_url": "https://openrouter.ai/tencent/hy4"
   },
   "tencent/hy4-preview": {
     "checked_on": "2026-10-27",
